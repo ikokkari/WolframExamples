@@ -1,0 +1,4508 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    184643,       4499]
+NotebookOptionsPosition[    177121,       4264]
+NotebookOutlinePosition[    177594,       4283]
+CellTagsIndexPosition[    177551,       4280]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData["Today"], "Input",
+ CellChangeTimes->{{3.734286438781232*^9, 3.734286439203684*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"\"Sat 5 May 2018\""}],RowBox[{"DateObject", "[", 
+     RowBox[{"{", 
+       RowBox[{"2018", ",", "5", ",", "5"}], "}"}], "]"}]},
+  "DateObject",
+  Editable->False]], "Output",
+ CellChangeTimes->{3.734286440469399*^9, 3.734469979803186*^9, 
+  3.734505311461104*^9, 3.734514216744005*^9, 3.734545607385673*^9, 
+  3.734545857152451*^9, 3.734548437073133*^9, 3.734560335341251*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Those Dreaded Word Problems", "Title",
+ CellChangeTimes->{{3.734286468695182*^9, 3.734286476166688*^9}},
+ TextJustification->1.,
+ FontSize->36],
+
+Cell[TextData[{
+ StyleBox["Ilkka Kokkarinen, ",
+  FontSize->14],
+ StyleBox["ilkka.kokkarinen@gmail.com",
+  FontFamily->"Courier New"],
+ StyleBox["\n\nThe original \[OpenCurlyDoubleQuote]Big Data\
+\[CloseCurlyDoubleQuote] of its era, Leo Tolstoy\[CloseCurlyQuote]s epic \
+masterpiece ",
+  FontSize->14],
+ StyleBox["War and Peace ",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["that has been loved and dreaded for its ginormous length, is now \
+old enough to be available for free on Project Gutenberg so that we can \
+perform some computations on it. The raw text file contains about three \
+megabytes of Unicode character data encoded with the ",
+  FontSize->14],
+ StyleBox["UTF-8",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[" standard character encoding that allows all the familiar English \
+characters and punctuation marks to be stored using only one byte of storage, \
+but the characters on the higher planes of Unicode can fly along encoded in \
+multibyte combinations whose highest order bits are set to one. The ",
+  FontSize->14],
+ StyleBox["Mathematica",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[" function ",
+  FontSize->14],
+ StyleBox["Import",
+  FontSize->14,
+  FontWeight->"Bold"],
+ StyleBox[" is a powerful Swiss army knife that can read in the contents of \
+any file of any common data format, either from the local filesystem or over \
+an URL.",
+  FontSize->14]
+}], "Text",
+ CellChangeTimes->{{3.7342865100028687`*^9, 3.734286580992635*^9}, {
+  3.734286924083089*^9, 3.734287007833777*^9}, {3.7342884400168133`*^9, 
+  3.7342884436083117`*^9}, {3.734293179705562*^9, 3.7342932739582577`*^9}, {
+  3.734432876385848*^9, 3.7344329765692873`*^9}, {3.734559412139058*^9, 
+  3.734559424985229*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wap", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", "\"\<http://www.gutenberg.org/files/2600/2600-0.txt\>\"", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringLength", "[", "wap", "]"}]}], "Input",
+ CellChangeTimes->{3.734286547637602*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["3227578"], "Output",
+ CellChangeTimes->{3.734286552072324*^9, 3.734469989077305*^9, 
+  3.734505314172943*^9, 3.734512867101101*^9, 3.734514219332274*^9, 
+  3.7345456107669077`*^9, 3.734545859820071*^9, 3.734548439762742*^9, 
+  3.7345603381894197`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "Even though the file contains line break characters, ",
+ StyleBox["Import",
+  FontWeight->"Bold"],
+ " does not treat them any differently from other characters, and for now the \
+entire book is one string of more than three million Unicode characters. The \
+function ",
+ StyleBox["StringSplit",
+  FontWeight->"Bold"],
+ " can easily break down this mass into the list of its individual lines. \
+However, since the text file available on Project Gutenberg contains several \
+lines of legal boilerplate prologue and epilogue around the actual meat of \
+the text, we use ",
+ StyleBox["Take",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Drop",
+  FontWeight->"Bold"],
+ " to extract only the actual body of the text, from which the empty lines \
+and chapter number lines are furthermore discarded. The remaining body of the \
+text then contains 51,111 lines of actual content. We can take a peek of the \
+last ten lines to find out how that entire story finally ends."
+}], "Text",
+ CellChangeTimes->{{3.734286614658532*^9, 3.7342867231825247`*^9}, {
+  3.734286835589786*^9, 3.734286852980466*^9}, {3.734288825040975*^9, 
+  3.734288932479149*^9}, {3.734293293405346*^9, 3.734293322997127*^9}, {
+  3.734336210780677*^9, 3.734336456392112*^9}, {3.734432988042371*^9, 
+  3.73443304284798*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wapLines", " ", "=", " ", 
+   RowBox[{"ToLowerCase", "[", 
+    RowBox[{"Select", "[", 
+     RowBox[{
+      RowBox[{"Take", "[", 
+       RowBox[{
+        RowBox[{"Drop", "[", 
+         RowBox[{
+          RowBox[{"StringSplit", "[", 
+           RowBox[{"wap", ",", " ", 
+            RowBox[{"RegularExpression", "[", "\"\<\\\\n\>\"", "]"}]}], "]"}],
+           ",", "835"}], "]"}], ",", "64860"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringLength", "[", "#", "]"}], ">", "0"}], " ", "&&", " ", 
+         RowBox[{"Not", "[", 
+          RowBox[{"StringMatchQ", "[", 
+           RowBox[{"#", ",", 
+            RowBox[{"RegularExpression", "[", "\"\<^CHAPTER.*\>\"", "]"}]}], 
+           "]"}], "]"}]}], ")"}], "&"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "wapLines", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Scan", "[", 
+  RowBox[{"Print", ",", 
+   RowBox[{"wapLines", "[", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", "wapLines", "]"}], "-", "10"}], " ", ";;", 
+      RowBox[{"Length", "[", "wapLines", "]"}]}], "]"}], "]"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{
+  3.734286664548379*^9, {3.734286731249248*^9, 3.734286823392435*^9}, {
+   3.73428835894731*^9, 3.73428837133706*^9}, {3.734336173694154*^9, 
+   3.734336205201951*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["51111"], "Output",
+ CellChangeTimes->{{3.734286767703299*^9, 3.734286824123043*^9}, 
+   3.73428685623685*^9, 3.73428837355481*^9, 3.7343362070331163`*^9, 
+   3.7343377471050243`*^9, 3.734469989698863*^9, 3.7345053148311663`*^9, 
+   3.7345142199485903`*^9, 3.7345456113916388`*^9, 3.734545860392948*^9, 
+   3.7345484403424273`*^9, 3.7345603387377357`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"do not feel the movement of the earth, but by admitting its \
+immobility\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.73456033874671*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"we arrive at absurdity, while by admitting its motion \
+(which we do not\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.7345603387546787`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"feel) we arrive at laws,\[CloseCurlyDoubleQuote] so also in \
+history the new view says: \[OpenCurlyDoubleQuote]it is\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338766384*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"true that we are not conscious of our dependence, but by \
+admitting our\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338778413*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"free will we arrive at absurdity, while by admitting our \
+dependence on\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338789234*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"the external world, on time, and on cause, we arrive at \
+laws.\[CloseCurlyDoubleQuote]\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338799715*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"in the first case it was necessary to renounce the \
+consciousness of an\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338811449*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"unreal immobility in space and to recognize a motion we did \
+not feel;\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338822001*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"in the present case it is similarly necessary to renounce a \
+freedom\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338833249*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"that does not exist, and to recognize a dependence of which \
+we are not\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338844191*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["\<\"conscious.\"\>"], "Print",
+ CellChangeTimes->{3.7342883735667467`*^9, 3.734336207049646*^9, 
+  3.7343377471180763`*^9, 3.734469989708123*^9, 3.734505314841323*^9, 
+  3.734514219959463*^9, 3.7345456114028463`*^9, 3.734545860403592*^9, 
+  3.734548440352228*^9, 3.734560338855785*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "For the purpose of analyzing the individual words that make up this text, \
+we split the lines into individual words. So that we don\[CloseCurlyQuote]t \
+distinguish between capitalized words that begin a sentence and the lowercase \
+words inside a sentence, the entire text is first converted to lowercase, and \
+all the contractions are turned into equivalent separate words. The function ",
+ StyleBox["removeContractions",
+  FontWeight->"Bold"],
+ " removes the contractions from the line, and the function ",
+ StyleBox["intoWords",
+  FontWeight->"Bold"],
+ " splits the result into the individual words using the sequences of \
+non-letter characters as separator sequences. The function ",
+ StyleBox["StringReplace",
+  FontWeight->"Bold"],
+ " can replace every occurrence of a string pattern inside that string, with \
+the operator ",
+ StyleBox["~~",
+  FontWeight->"Bold"],
+ " combining parts of a regular expression that identify the pattern to be \
+replaced."
+}], "Text",
+ CellChangeTimes->{{3.734286880693119*^9, 3.734286915395442*^9}, {
+  3.7342870344421263`*^9, 3.734287070592956*^9}, {3.734287128001021*^9, 
+  3.734287181311346*^9}, {3.734288939441737*^9, 3.734289067509872*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"removeContractions", "[", "line_", "]"}], " ", ":=", " ", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{"line", ",", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+       "\"\<you\[CloseCurlyQuote]re\>\"", " ", "\[Rule]", " ", 
+        "\"\<you are\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<i\[CloseCurlyQuote]m\>\"", " ", "\[Rule]", " ", "\"\<i am\>\""}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<we\[CloseCurlyQuote]re\>\"", " ", "\[Rule]", " ", 
+        "\"\<we are\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<they\[CloseCurlyQuote]re\>\"", " ", "\[Rule]", " ", 
+        "\"\<they are\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<shan\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<shall not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<won\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<will not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<shouldn\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<should not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<don\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<do not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<doesn\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<does not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<mustn\[CloseCurlyQuote]t\>\"", " ", "\[Rule]", " ", 
+        "\"\<must not\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "\"\<\[CloseCurlyQuote]ll\>\"", " ", "~~", " ", "WordBoundary"}], " ",
+         "\[Rule]", " ", "\"\< will\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "\"\<\[CloseCurlyQuote]s\>\"", " ", "~~", " ", "WordBoundary"}], " ", 
+        "\[Rule]", " ", "\"\<\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "\"\<\[CloseCurlyQuote]t\>\"", " ", "~~", " ", "WordBoundary"}], " ", 
+        "\[Rule]", " ", "\"\<\>\""}]}], "\[IndentingNewLine]", "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"intoWords", "[", "line_", "]"}], " ", ":=", " ", 
+   RowBox[{"StringSplit", "[", 
+    RowBox[{
+     RowBox[{"removeContractions", "[", "line", "]"}], ",", " ", 
+     RowBox[{
+      RowBox[{"Except", "[", "LetterCharacter", "]"}], ".."}]}], " ", "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{"intoWords", "[", 
+  "\"\<i\[CloseCurlyQuote]m sure that we won\[CloseCurlyQuote]t stand for Bob\
+\[CloseCurlyQuote]s nonsense!\>\"", "]"}]}], "Input",
+ CellChangeTimes->{
+  3.734287080965753*^9, {3.7343366734313602`*^9, 3.734336677820459*^9}, {
+   3.734337182710677*^9, 3.734337210039455*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"i\"\>", ",", "\<\"am\"\>", ",", "\<\"sure\"\>", 
+   ",", "\<\"that\"\>", ",", "\<\"we\"\>", ",", "\<\"will\"\>", 
+   ",", "\<\"not\"\>", ",", "\<\"stand\"\>", ",", "\<\"for\"\>", 
+   ",", "\<\"Bob\"\>", ",", "\<\"nonsense\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.734287082243835*^9, 3.7343362392787247`*^9, 
+  3.734336682097307*^9, 3.734337213982286*^9, 3.734337437861617*^9, 
+  3.734337751143858*^9, 3.734469989930785*^9, 3.734505315050275*^9, 
+  3.7345142201711073`*^9, 3.734545611618733*^9, 3.734545860608012*^9, 
+  3.734548440543911*^9, 3.734560338935155*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "To count the number of occurrences of elements that naturally map into \
+positive integers, some kind of Table of counters would be the best way to \
+keep track of how many times you have seen each element. The same approach \
+does not work for counting things for which most possible things are not \
+things at all, such as the words of the English language. For the purpose of \
+mapping a set of keys into their corresponding values, ",
+ StyleBox["associations",
+  FontSlant->"Italic"],
+ " are a much more efficient mapping data structure of ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", similar to hashmaps of various other languages such as Java. Given the \
+list of individual lines of strings, the function ",
+ StyleBox["countWords",
+  FontWeight->"Bold"],
+ " creates and returns a pair ",
+ StyleBox["{wordMap, wordCount}",
+  FontWeight->"Bold"],
+ " where ",
+ StyleBox["wordMap",
+  FontWeight->"Bold"],
+ " is the association of individual words to their occurrence counts, and ",
+ StyleBox["wordCount",
+  FontWeight->"Bold"],
+ " is the mapping from the lines of the text into the total number of words \
+that have been seen up to that line. "
+}], "Text",
+ CellChangeTimes->{{3.7342872077915277`*^9, 3.734287264613842*^9}, {
+  3.734287300998705*^9, 3.734287490087658*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "countWords", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"countWords", "[", "lines_", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "wordMap", ",", " ", "wordCount", ",", "i", ",", "j", ",", "words", ",",
+        " ", "word", ",", " ", "totalWords"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"wordMap", " ", "=", " ", 
+       RowBox[{"Association", "[", 
+        RowBox[{"{", "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"wordCount", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", "1", ",", " ", 
+           RowBox[{"Length", "[", "lines", "]"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"totalWords", " ", "=", " ", "0"}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"words", " ", "=", " ", 
+          RowBox[{"intoWords", "[", 
+           RowBox[{"lines", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Do", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"word", " ", "=", " ", 
+             RowBox[{"words", "[", 
+              RowBox[{"[", "j", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"StringLength", "[", "word", "]"}], " ", ">", " ", 
+                "1"}], " ", "||", " ", 
+               RowBox[{"word", " ", "\[Equal]", " ", "\"\<i\>\""}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"KeyExistsQ", "[", 
+                 RowBox[{"wordMap", ",", "word"}], "]"}], ",", 
+                "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"wordMap", "[", "word", "]"}], " ", "=", " ", 
+                 RowBox[{
+                  RowBox[{"wordMap", "[", "word", "]"}], " ", "+", " ", 
+                  "1"}]}], ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"wordMap", "[", "word", "]"}], " ", "=", " ", "1"}],
+                  ";", "\[IndentingNewLine]", 
+                 RowBox[{"totalWords", "++"}]}]}], "\[IndentingNewLine]", 
+               "]"}]}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"j", ",", " ", "1", ",", " ", 
+             RowBox[{"Length", "[", "words", "]"}]}], "}"}]}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"wordCount", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", "totalWords"}]}], 
+        "\[IndentingNewLine]", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", "lines", "]"}]}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"wordMap", ",", " ", "wordCount"}], "}"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.734287500109976*^9, {3.734337044216466*^9, 3.734337093774849*^9}, {
+   3.734337249103759*^9, 3.73433724921986*^9}, {3.734337313500762*^9, 
+   3.73433732950989*^9}, {3.734337383043601*^9, 3.734337418124096*^9}, 
+   3.734337449617305*^9, {3.734337481953661*^9, 3.73433754864755*^9}, {
+   3.734337605274603*^9, 3.7343376101626596`*^9}, {3.734337659610817*^9, 
+   3.73433766006535*^9}, 3.734337699974354*^9, {3.7343378361753607`*^9, 
+   3.734337886302372*^9}, {3.734337930574843*^9, 3.7343379466354513`*^9}, {
+   3.73433799781894*^9, 3.734338040315014*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[TextData[{
+ "With the previous function defined, we can generate the association of the \
+individual words to their occurrence counts, from which the function ",
+ StyleBox["Keys",
+  FontWeight->"Bold"],
+ " produces the list of keys that have some value associated with them. The \
+first problem that having this association available makes trivial to solve \
+is finding the top hundred most frequent words in the text, along with their \
+occurrence counts. The results are not really that surprising, but of course \
+computational linguists would normalize these counts with respect to their \
+corresponding frequencies in the average English text, which would be \
+available in the ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " function ",
+ StyleBox["WordFrequencyData",
+  FontWeight->"Bold"],
+ ". Even without having ever read the epic story, just based on their \
+occurrence counts seem like Pierre, Nat\[AAcute]sha and Andrew might be its \
+three main characters."
+}], "Text",
+ CellChangeTimes->{{3.734287516600403*^9, 3.734287597501792*^9}, {
+  3.73428769975599*^9, 3.734287843497905*^9}, {3.734288089918386*^9, 
+  3.734288115725552*^9}, {3.734289536810886*^9, 3.734289555347158*^9}, {
+  3.734336987599698*^9, 3.7343369993832903`*^9}, {3.7343378181485662`*^9, 
+  3.734337819979086*^9}, {3.734338312811819*^9, 3.734338380756043*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"result", ",", " ", "wordCount"}], "}"}], " ", "=", " ", 
+   RowBox[{"countWords", "[", "wapLines", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", 
+  RowBox[{"Keys", "[", "result", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sorted", " ", "=", " ", 
+   RowBox[{"Reverse", "[", 
+    RowBox[{"SortBy", "[", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#", ",", 
+           RowBox[{"result", "[", "#", "]"}]}], "}"}], "&"}], ",", " ", 
+        RowBox[{"Keys", "[", "result", "]"}]}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"#", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "&"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Take", "[", 
+  RowBox[{"sorted", ",", "100"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734287545891787*^9, 3.7342875771470633`*^9}, {
+  3.7342877156292543`*^9, 3.7342877159405403`*^9}, {3.7342880643116302`*^9, 
+  3.734288068258408*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["17423"], "Output",
+ CellChangeTimes->{
+  3.734287586066513*^9, 3.734287721138482*^9, 3.7342880741998577`*^9, 
+   3.7343364677652187`*^9, 3.7343366942953444`*^9, 3.7343371041584682`*^9, 
+   3.734337225689329*^9, 3.734337258062283*^9, 3.734337348789167*^9, 
+   3.734337393881446*^9, 3.7343374276841097`*^9, 3.734337459193228*^9, 
+   3.734337525946965*^9, 3.734337560719199*^9, 3.7343376296175003`*^9, 
+   3.7343376689883833`*^9, 3.734337710324102*^9, 3.734337764615119*^9, {
+   3.734337870896172*^9, 3.734337898330984*^9}, {3.734337948601417*^9, 
+   3.7343379585683413`*^9}, 3.734338007941154*^9, 3.734338050685808*^9, 
+   3.734469996041655*^9, 3.734505321380258*^9, 3.73451422579136*^9, 
+   3.734545616856415*^9, 3.734545865856331*^9, 3.7345484480902042`*^9, 
+   3.734560344410927*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"the\"\>", ",", "34549"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"and\"\>", ",", "22230"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"to\"\>", ",", "16675"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"of\"\>", ",", "14889"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"he\"\>", ",", "10004"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"in\"\>", ",", "8979"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"that\"\>", ",", "8191"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"his\"\>", ",", "7984"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"was\"\>", ",", "7359"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"with\"\>", ",", "5663"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"it\"\>", ",", "5602"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"not\"\>", ",", "5426"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"had\"\>", ",", "5365"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"her\"\>", ",", "4725"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"him\"\>", ",", "4637"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"at\"\>", ",", "4532"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"i\"\>", ",", "4507"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"but\"\>", ",", "4050"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"as\"\>", ",", "4024"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"on\"\>", ",", "4003"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"you\"\>", ",", "3801"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"for\"\>", ",", "3529"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"she\"\>", ",", "3489"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"is\"\>", ",", "3321"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"said\"\>", ",", "2842"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"all\"\>", ",", "2795"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"from\"\>", ",", "2694"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"be\"\>", ",", "2438"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"by\"\>", ",", "2437"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"were\"\>", ",", "2425"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"what\"\>", ",", "2398"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"they\"\>", ",", "2253"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"who\"\>", ",", "2166"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"one\"\>", ",", "2128"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"this\"\>", ",", "2075"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"which\"\>", ",", "2057"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"have\"\>", ",", "1975"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"pierre\"\>", ",", "1963"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"prince\"\>", ",", "1928"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"so\"\>", ",", "1901"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"an\"\>", ",", "1629"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"will\"\>", ",", "1594"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"up\"\>", ",", "1579"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"do\"\>", ",", "1570"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"there\"\>", ",", "1560"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"them\"\>", ",", "1529"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"or\"\>", ",", "1525"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"when\"\>", ",", "1496"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"did\"\>", ",", "1485"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"been\"\>", ",", "1476"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"their\"\>", ",", "1440"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"no\"\>", ",", "1401"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"are\"\>", ",", "1394"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"would\"\>", ",", "1366"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"now\"\>", ",", "1332"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"only\"\>", ",", "1298"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"if\"\>", ",", "1294"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"me\"\>", ",", "1275"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"out\"\>", ",", "1239"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"my\"\>", ",", "1226"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nat\[AAcute]sha\"\>", ",", "1213"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"man\"\>", ",", "1189"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"andrew\"\>", ",", "1143"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"could\"\>", ",", "1115"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"we\"\>", ",", "1069"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"more\"\>", ",", "1057"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"himself\"\>", ",", "1020"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"about\"\>", ",", "1011"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"how\"\>", ",", "1006"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"into\"\>", ",", "1004"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"then\"\>", ",", "941"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"time\"\>", ",", "929"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"princess\"\>", ",", "916"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"face\"\>", ",", "893"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"french\"\>", ",", "881"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"went\"\>", ",", "862"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"some\"\>", ",", "846"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"know\"\>", ",", "846"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"after\"\>", ",", "841"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"old\"\>", ",", "833"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"before\"\>", ",", "831"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"eyes\"\>", ",", "827"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"your\"\>", ",", "811"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"very\"\>", ",", "803"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"men\"\>", ",", "792"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"rost\[OAcute]v\"\>", ",", "776"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"room\"\>", ",", "771"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"thought\"\>", ",", "767"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"go\"\>", ",", "755"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"like\"\>", ",", "751"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"well\"\>", ",", "746"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"see\"\>", ",", "731"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"count\"\>", ",", "726"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"moscow\"\>", ",", "722"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"began\"\>", ",", "718"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"again\"\>", ",", "709"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"has\"\>", ",", "707"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"down\"\>", ",", "700"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"come\"\>", ",", "683"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"came\"\>", ",", "683"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.734287586066513*^9, 3.734287721138482*^9, 3.7342880741998577`*^9, 
+   3.7343364677652187`*^9, 3.7343366942953444`*^9, 3.7343371041584682`*^9, 
+   3.734337225689329*^9, 3.734337258062283*^9, 3.734337348789167*^9, 
+   3.734337393881446*^9, 3.7343374276841097`*^9, 3.734337459193228*^9, 
+   3.734337525946965*^9, 3.734337560719199*^9, 3.7343376296175003`*^9, 
+   3.7343376689883833`*^9, 3.734337710324102*^9, 3.734337764615119*^9, {
+   3.734337870896172*^9, 3.734337898330984*^9}, {3.734337948601417*^9, 
+   3.7343379585683413`*^9}, 3.734338007941154*^9, 3.734338050685808*^9, 
+   3.734469996041655*^9, 3.734505321380258*^9, 3.73451422579136*^9, 
+   3.734545616856415*^9, 3.734545865856331*^9, 3.7345484480902042`*^9, 
+   3.7345603444668922`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "As you read through any real world text, you will quickly encounter the \
+majority of the words that it is ever going to contain, and the rest of the \
+text will be basically those same words but together in different \
+combinations and permutations. Or is it? The ",
+ StyleBox["wordCount",
+  FontWeight->"Bold"],
+ " list returned by the previous function shows the total count of different \
+words encountered up to the particular line. Since there are over fifty \
+thousands lines of text in ",
+ StyleBox["War and Peace",
+  FontSlant->"Italic"],
+ ", to keep the following graph small enough, the plot shows the cumulative \
+word counts for every thousandth line. This makes the growth curve clear \
+enough for visual inspection, and after the initial growth spurt, new words \
+keep coming out all the way to the end of the book in an almost linear pace. \
+"
+}], "Text",
+ CellChangeTimes->{{3.734287624294654*^9, 3.7342876947244053`*^9}, {
+  3.734287865874742*^9, 3.734287942616056*^9}, {3.734288039655879*^9, 
+  3.7342880454545403`*^9}, {3.734288167252159*^9, 3.734288172076241*^9}, {
+  3.7342887026266108`*^9, 3.7342887062107964`*^9}, {3.734293346231682*^9, 
+  3.734293390622335*^9}, {3.734336563053829*^9, 3.734336639524683*^9}, {
+  3.7343367232192297`*^9, 3.734336737691537*^9}, {3.734338093311414*^9, 
+  3.7343381817007303`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"Map", "[", 
+   RowBox[{"Last", ",", " ", 
+    RowBox[{"Partition", "[", 
+     RowBox[{"wordCount", ",", "1000"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.734287954884708*^9, 3.7342879569208813`*^9}, {
+  3.7344700091148167`*^9, 3.734470013159328*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.016666666666666666`],
+      AbsoluteThickness[1.6], 
+     StyleBox[LineBox[CompressedData["
+1:eJw1zM8rw3Ecx/FvcnCQHBwcHGYhLclsMz+37/x2pNyUWu3gJOc5fP4BVycH
+B0k5DCUSGfNz82NX/gQ5KEvKBXu+3p/69OzxfX36tqaX5zI1nudF/u5/OR/J
+aqKbvj7Q7R25jq7n5EZaOJCb6Oyh3Ey/j+QWmjqRAzR9Kgfpy5ncRoPncke1
+biEvd9KKOcS+dSF34fil3K3/m3vocUEO837xSu6ln+YI+/61HKWBGznGvmfu
+o4lbOc6eM/fj9jt5AK+YB/GXeQiv3svD9N08wp4tyglcMSdxqiT7dFd2cv2D
+9hTNyA67V9tHaehRu+xkb4z3b7ZjL/akfZx9TXbYK9k+QWuftWO3JHuTtGw7
+9hvK2qeqzYdlh71526dp1nbsb9g+g4u2Y/dT9n8Bq455FA==
+       "]],
+      FontFamily->"Verdana"]}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  BaseStyle->{FontFamily -> "Verdana"},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{},
+  PlotRange->{{0., 51.}, {0, 17390.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.734287958380142*^9, 3.734336473764697*^9, 
+  3.734469996877082*^9, 3.7345053217929897`*^9, 3.734514226252613*^9, 
+  3.734545617293181*^9, 3.734545866162375*^9, 3.734548448493979*^9, 
+  3.734560344875244*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "How many lines do we need to read into ",
+ StyleBox["War and Peace",
+  FontSlant->"Italic"],
+ " to encounter half of the different words that the entire book contains? \
+The correct answer of 8,740 lines is significantly lower than the quick but \
+wrong answer of one half of the lines! In fact, after reading only the first \
+1,747 lines out of the entirety of 51,476 lines of raw text, you have already \
+encountered one tenth of the total set of words of this entire tome. Merely \
+reading the first hundred lines would already give you 474 different words."
+}], "Text",
+ CellChangeTimes->{{3.734288176412868*^9, 3.7342881919874897`*^9}, {
+  3.734288242230225*^9, 3.734288318345533*^9}, {3.734288458990735*^9, 
+  3.7342884931664047`*^9}, {3.734288523797923*^9, 3.734288683507135*^9}, {
+  3.734288732899472*^9, 3.734288768953514*^9}, {3.734289143272863*^9, 
+  3.734289170768511*^9}, {3.734289488462368*^9, 3.7342894899881477`*^9}, {
+  3.734293399358265*^9, 3.734293426427677*^9}, {3.734293496945971*^9, 
+  3.734293503689891*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"Last", "[", 
+    RowBox[{"Select", "[", 
+     RowBox[{"wordCount", ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"k", "#"}], " ", "\[LessEqual]", " ", 
+         RowBox[{"Last", "[", "wordCount", "]"}]}], ")"}], "&"}]}], "]"}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", "10", ",", "2", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"wordCount", "[", 
+  RowBox[{"[", "100", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734288204965062*^9, 3.734288238899428*^9}, {
+  3.7342885050169353`*^9, 3.734288514255026*^9}, {3.734288644948658*^9, 
+  3.73428866949165*^9}, {3.7342934704826307`*^9, 3.7342934713075666`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1742", ",", "1934", ",", "2177", ",", "2488", ",", "2903", ",", "3484", 
+   ",", "4354", ",", "5806", ",", "8711"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.734288264482662*^9, 3.734288515737768*^9, {3.7342886515112543`*^9, 
+   3.734288670505094*^9}, 3.734293472434642*^9, 3.734469997522225*^9, 
+   3.7345053225198174`*^9, 3.734514226951758*^9, 3.73454561797678*^9, 
+   3.734545866845879*^9, 3.734548449212237*^9, 3.734560345548587*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["473"], "Output",
+ CellChangeTimes->{
+  3.734288264482662*^9, 3.734288515737768*^9, {3.7342886515112543`*^9, 
+   3.734288670505094*^9}, 3.734293472434642*^9, 3.734469997522225*^9, 
+   3.7345053225198174`*^9, 3.734514226951758*^9, 3.73454561797678*^9, 
+   3.734545866845879*^9, 3.734548449212237*^9, 3.7345603455571947`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "Using ",
+ StyleBox["War and Peace",
+  FontSlant->"Italic"],
+ " as the source corpus, we can have some fun with the ",
+ StyleBox["Markovian random text generation",
+  FontSlant->"Italic"],
+ ", also more colloquially known as ",
+ StyleBox["Dissociated Press",
+  FontSlant->"Italic"],
+ ". To demonstrate the extremely important ",
+ StyleBox["tradeoff between space and time",
+  FontSlant->"Italic"],
+ " that seems to take place all over computer science, the first \
+implementation does not preprocess the text to allow the algorithm to quickly \
+find the positions of all the patterns but instead find all occurrences of \
+the current pattern in the text for every character produced by the \
+algorithm. If the pattern occurs in at least one position inside War and \
+Peace, choose one of those positions randomly and extend the pattern at that \
+point. If the current pattern cannot be found anywhere in that massive tome, \
+shorten the current pattern by dropping its first character and continue."
+}], "Text",
+ CellChangeTimes->{{3.734288778642338*^9, 3.7342888154728537`*^9}, {
+  3.734289108242408*^9, 3.734289128785027*^9}, {3.734289189672091*^9, 
+  3.734289289271267*^9}, {3.734289322438109*^9, 3.734289407213479*^9}, {
+  3.7342908009391623`*^9, 3.734290841599831*^9}, {3.734430299635605*^9, 
+  3.7344303678312263`*^9}, {3.734430977455905*^9, 3.734430977815379*^9}, {
+  3.734431336617206*^9, 3.734431349817593*^9}, {3.734431711540913*^9, 
+  3.73443188018578*^9}, {3.734431915824009*^9, 3.7344319420166492`*^9}, {
+  3.7344327859327374`*^9, 3.734432805291346*^9}, {3.734511538413962*^9, 
+  3.734511604972706*^9}, {3.734514028121138*^9, 3.73451403547831*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wap", " ", "=", " ", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{"wap", ",", " ", 
+     RowBox[{
+      RowBox[{"RegularExpression", "[", "\"\<\\\\n\>\"", "]"}], " ", 
+      "\[Rule]", " ", "\"\< \>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dissociatedPress", "[", 
+   RowBox[{"maxPat_", ",", "n_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "nextChar", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"nextChar", "[", "pat_", "]"}], " ", ":=", " ", 
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"pos", " ", "=", " ", 
+          RowBox[{"StringPosition", "[", 
+           RowBox[{"wap", ",", "pat"}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "pos", "]"}], " ", ">", " ", "0"}], ",", 
+          " ", 
+          RowBox[{"StringTake", "[", 
+           RowBox[{"wap", ",", 
+            RowBox[{
+             RowBox[{"RandomChoice", "[", "pos", "]"}], "+", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", 
+               RowBox[{"1", "+", " ", "maxPat", " ", "-", " ", 
+                RowBox[{"StringLength", "[", "pat", "]"}]}]}], "}"}]}]}], 
+           "]"}], ",", " ", 
+          RowBox[{"nextChar", "[", 
+           RowBox[{"StringDrop", "[", 
+            RowBox[{"pat", ",", "1"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+         "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringTake", "[", 
+          RowBox[{"#", ",", "1"}], "]"}], "&"}], ",", 
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"nextChar", "[", "#", "]"}], "&"}], ",", " ", 
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"start", " ", "=", " ", 
+              RowBox[{"RandomInteger", "[", 
+               RowBox[{"{", 
+                RowBox[{"5000", ",", "20000"}], "}"}], "]"}]}], "}"}], ",", 
+            RowBox[{"StringTake", "[", 
+             RowBox[{"wap", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"start", ",", " ", 
+                RowBox[{"start", " ", "+", " ", "3"}]}], "}"}]}], "]"}]}], 
+           "]"}], ",", " ", "n"}], "]"}]}], "]"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"time", ",", " ", "result"}], "}"}], " ", "=", " ", 
+  RowBox[{"Timing", "[", 
+   RowBox[{"dissociatedPress", "[", 
+    RowBox[{"5", ",", "400"}], "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.734430374033742*^9, 3.734430640941293*^9}, {
+   3.734430706533359*^9, 3.7344308090544853`*^9}, {3.734430868722638*^9, 
+   3.734430869673875*^9}, {3.7344309193788557`*^9, 3.734430952248683*^9}, {
+   3.734430995739043*^9, 3.734431066539403*^9}, {3.73443110171253*^9, 
+   3.734431106597224*^9}, {3.73443114372575*^9, 3.734431219124939*^9}, {
+   3.7344312585293427`*^9, 3.734431293953796*^9}, {3.7344314350175047`*^9, 
+   3.734431501052552*^9}, {3.734431541159443*^9, 3.7344317050253563`*^9}, {
+   3.734431890638338*^9, 3.734431912809827*^9}, {3.7344319532676287`*^9, 
+   3.734432063279798*^9}, 3.734432260131661*^9, {3.734432324114828*^9, 
+   3.734432508118165*^9}, {3.7344325585678883`*^9, 3.734432595735509*^9}, {
+   3.734432674542955*^9, 3.734432683853695*^9}, {3.7345113085958433`*^9, 
+   3.7345113087536783`*^9}, {3.734513804722357*^9, 3.734513815442321*^9}, {
+   3.734513956810507*^9, 3.734513960415588*^9}, {3.7345456663361*^9, 
+   3.734545668827075*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "45.23251700000000141699274536222219467163`7.67605066836573", 
+   ",", "\<\"vening prolonger readiness expedienced and suddenly a favor to \
+himself. It see himself of salver, and so fashion) men people weathe. Having \
+her he government would taken abacus and mountess Rost\[OAcute]va admittee \
+one and that a propose.  Hussars before and a right, evidently remained by a \
+group was going of him. There is at least of the dancing, but all present \
+from the French army....  \[OpenCurlyDoubleQuote]I... saw him wha\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.734430461553001*^9, 3.7344305739409943`*^9}, 
+   3.73443064346765*^9, {3.734430721679489*^9, 3.734430738581746*^9}, {
+   3.734430778503708*^9, 3.734430796201198*^9}, 3.7344309746548643`*^9, {
+   3.734431040763294*^9, 3.73443106833193*^9}, 3.7344313305801287`*^9, {
+   3.734431474914991*^9, 3.734431617806054*^9}, {3.7344316575562963`*^9, 
+   3.734431691174068*^9}, 3.734431983126275*^9, 3.734432058329576*^9, 
+   3.734432095443289*^9, 3.7344322926391706`*^9, 3.7344324327188272`*^9, 
+   3.7344325297056828`*^9, {3.734432564173167*^9, 3.73443258546528*^9}, 
+   3.734432648046948*^9, 3.734432706969984*^9, 3.734470019144096*^9, 
+   3.7345053446379547`*^9, 3.734511351585194*^9, 3.7345138704873867`*^9, 
+   3.734514038614696*^9, 3.73451426849028*^9, 3.734545658300672*^9, 
+   3.734545908592101*^9, 3.734548489944029*^9, 3.734560392415963*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+Choosing the next character based on the two previously produced characters \
+generates something that is pronounceable as English but is otherwise \
+gibberish.\
+\>", "Text",
+ CellChangeTimes->{{3.734511431304085*^9, 3.734511506917595*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"time", ",", " ", "result"}], "}"}], " ", "=", " ", 
+  RowBox[{"Timing", "[", 
+   RowBox[{"dissociatedPress", "[", 
+    RowBox[{"2", ",", "400"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.734511366713522*^9, 3.734511373056219*^9}, {
+  3.73451381837064*^9, 3.734513825129099*^9}, {3.734513965608408*^9, 
+  3.7345139692083797`*^9}, {3.7345456714301643`*^9, 3.734545673374158*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "44.27791200000000060299498727545142173767`7.66678704607667", 
+   ",", "\<\"   And las car the knew isibesuck lorces of skentions a \
+lifeaught, It and him?\[CloseCurlyDoubleQuote] se, wen lost se leanybod yons \
+fir cames of befoung oneen ung livis removed thant; and improok these his the \
+jumid smonly, ais forreed dis pas re eiven, not knerect counte smirly eveme \
+knothinficalse. \[OpenCurlyDoubleQuote]Thim the up://pglit, of and they hom \
+nothe forbe cous!\[CloseCurlyDoubleQuote] he he ing hatchiching usion\
+\[CloseCurlyQuote]s to lier? Is mustuartim. Bognim and\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.734511416385867*^9, 3.734514309472396*^9, 
+  3.7345456995439243`*^9, 3.734545951558363*^9, 3.734548529426433*^9, 
+  3.734560438642461*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Associations",
+  FontSlant->"Italic"],
+ " backed by some sort of ",
+ StyleBox["hash table",
+  FontSlant->"Italic"],
+ " data structure are a potent tool in every serious programming language to \
+solve complicated problems quickly. The function ",
+ StyleBox["buildFollowList",
+  FontWeight->"Bold"],
+ " builds an association that, for each patterns up to the length ",
+ StyleBox["maxpat",
+  FontWeight->"Bold"],
+ " that was encountered in the source text, gives the list of possible \
+characters that have been observed to follow that particular pattern. \
+Choosing a "
+}], "Text",
+ CellChangeTimes->{{3.734288778642338*^9, 3.7342888154728537`*^9}, {
+   3.734289108242408*^9, 3.734289128785027*^9}, {3.734289189672091*^9, 
+   3.734289289271267*^9}, {3.734289322438109*^9, 3.734289407213479*^9}, {
+   3.7342908009391623`*^9, 3.734290841599831*^9}, {3.734430299635605*^9, 
+   3.7344303678312263`*^9}, 3.734432112391444*^9, {3.734511625885416*^9, 
+   3.734511628801752*^9}, {3.734511721746294*^9, 3.734511731889956*^9}, {
+   3.734513427031221*^9, 3.7345134407748547`*^9}, {3.734513509439137*^9, 
+   3.7345135212619343`*^9}, {3.734513564909194*^9, 3.734513649995504*^9}, {
+   3.73451435396206*^9, 3.734514356696563*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"buildFollowList", "[", "maxpat_", "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "followList", ",", " ", "pat", ",", "part", ",", " ", "follow", ",", 
+        "nextChar"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"followList", " ", "=", " ", 
+        RowBox[{"Association", "[", 
+         RowBox[{"{", "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"pat", " ", "=", " ", 
+           RowBox[{"StringTake", "[", 
+            RowBox[{"wap", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", 
+               RowBox[{"i", " ", "+", " ", "maxpat", "+", "1"}]}], "}"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Do", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"part", " ", "=", 
+              RowBox[{"StringTake", "[", 
+               RowBox[{"pat", ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "j"}], "}"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"KeyExistsQ", "[", 
+                RowBox[{"followList", ",", "part"}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"follow", " ", "=", " ", 
+                RowBox[{"followList", "[", "part", "]"}]}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"follow", " ", "=", " ", 
+                 RowBox[{"{", "}"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+             ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "follow", "]"}], " ", "<", " ", 
+                "100"}], ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"followList", "[", "part", "]"}], " ", "=", " ", 
+                RowBox[{"Append", "[", 
+                 RowBox[{"follow", ",", " ", 
+                  RowBox[{"StringTake", "[", 
+                   RowBox[{"pat", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"j", "+", "1"}], "}"}]}], "]"}]}], "]"}]}]}], 
+              "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", "1", ",", 
+              RowBox[{"maxpat", " ", "-", "1"}]}], "}"}]}], "]"}], ";"}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "10000", ",", "15000"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "followList"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"followList4", " ", "=", " ", 
+   RowBox[{"buildFollowList", "[", "4", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "followList4", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"w", ",", 
+     RowBox[{"followList4", "[", "w", "]"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"w", ",", " ", 
+     RowBox[{"RandomSample", "[", 
+      RowBox[{
+       RowBox[{"Keys", "[", "followList4", "]"}], ",", "10"}], "]"}]}], 
+    "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734511741491787*^9, 3.734511756093471*^9}, {
+  3.7345117876831217`*^9, 3.734512044470647*^9}, {3.734512079799114*^9, 
+  3.7345121987163773`*^9}, {3.7345122841171494`*^9, 3.7345123002027884`*^9}, {
+  3.7345123423883657`*^9, 3.734512435658024*^9}, {3.734512493161092*^9, 
+  3.734512574685751*^9}, {3.734512617567552*^9, 3.734512655102274*^9}, {
+  3.734512707126585*^9, 3.734512748238842*^9}, {3.7345128905281563`*^9, 
+  3.7345129155213823`*^9}, {3.734513122866761*^9, 3.7345132205888653`*^9}, {
+  3.734513253678047*^9, 3.7345132600906773`*^9}, {3.734513298496887*^9, 
+  3.7345133687514*^9}, {3.7345134489281282`*^9, 3.734513493167056*^9}, {
+  3.734513550624662*^9, 3.734513557480893*^9}, {3.734513592014038*^9, 
+  3.73451359731006*^9}, {3.734513652372464*^9, 3.73451365503627*^9}, {
+  3.734522639472053*^9, 3.734522641927566*^9}, {3.734545844897627*^9, 
+  3.7345458449630213`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["2232"], "Output",
+ CellChangeTimes->{3.7345135843392773`*^9, 3.734513726433722*^9, 
+  3.7345143733019753`*^9, 3.7345228360371637`*^9, 3.734545840119175*^9, 
+  3.7345460166665573`*^9, 3.734548590759781*^9, 3.734560512333625*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"er.\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{"\<\" \"\>", ",", "\<\" \"\>"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nam\"\>", ",", 
+     RowBox[{"{", "\<\"e\"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"se!\"\>", ",", 
+     RowBox[{"{", "\<\" \"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"du\"\>", ",", 
+     RowBox[{"{", "\<\"e\"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"hou\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{"\<\"g\"\>", ",", "\<\"g\"\>"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ors\"\>", ",", 
+     RowBox[{"{", "\<\"a\"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"kne\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{"\<\"w\"\>", ",", "\<\"s\"\>"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"sid\"\>", ",", 
+     RowBox[{"{", "\<\"e\"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Ru\"\>", ",", 
+     RowBox[{"{", "\<\"s\"\>", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ep\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{"\<\"l\"\>", ",", "\<\"e\"\>"}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.7345135843392773`*^9, 3.734513726433722*^9, 
+  3.7345143733019753`*^9, 3.7345228360371637`*^9, 3.734545840119175*^9, 
+  3.7345460166665573`*^9, 3.734548590759781*^9, 3.734560512345984*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+Once the table of all possible ways to follow the given pattern has been \
+built, it can be used to generate random text of arbitrary length nearly \
+instantaneously. In this example, trading the memory used to preprocess the \
+possible ways to follow the given character pattern is well worth the cost \
+compared to the payoff of avoiding the work of looking up all the occurrences \
+of the given pattern in the memory each time a new character is produced. \
+\>", "Text",
+ CellChangeTimes->{{3.7345133999675083`*^9, 3.734513421839168*^9}, {
+  3.734513709628271*^9, 3.734513711778823*^9}, {3.734513751259054*^9, 
+  3.734513760425665*^9}, {3.734514061974225*^9, 3.7345141351480913`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"dissociatedPressAssoc", "[", 
+    RowBox[{"n_", ",", "followList_", ",", " ", "start_"}], "]"}], " ", ":=", 
+   " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "nextChar", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"nextChar", "[", 
+        RowBox[{"pat_", " ", "/;", " ", 
+         RowBox[{
+          RowBox[{"StringLength", "[", "pat", "]"}], " ", "\[Equal]", " ", 
+          "0"}]}], "]"}], " ", ":=", " ", 
+       RowBox[{"nextChar", "[", 
+        RowBox[{"RandomChoice", "[", 
+         RowBox[{"CharacterRange", "[", 
+          RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}], "]"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"nextChar", "[", "pat_", "]"}], " ", ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"KeyExistsQ", "[", 
+            RowBox[{"followList", ",", " ", "pat"}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"nc", " ", "=", " ", 
+               RowBox[{"RandomChoice", "[", 
+                RowBox[{"followList", "[", "pat", "]"}], "]"}]}], "}"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"KeyExistsQ", "[", 
+                RowBox[{"followList", ",", " ", 
+                 RowBox[{"pat", " ", "<>", " ", "nc"}]}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"nextChar", "[", 
+                RowBox[{"pat", " ", "<>", "nc"}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"StringDrop", "[", 
+                 RowBox[{"pat", ",", "1"}], "]"}], "<>", "nc"}]}], 
+              "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"nextChar", "[", 
+            RowBox[{"StringDrop", "[", 
+             RowBox[{"pat", ",", "1"}], "]"}], "]"}]}], "\[IndentingNewLine]",
+           "]"}]}], "\[IndentingNewLine]", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringTake", "[", 
+           RowBox[{"#", ",", "1"}], "]"}], "&"}], ",", 
+         RowBox[{"NestList", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"nextChar", "[", "#", "]"}], "&"}], ",", "start", ",", 
+           " ", "n"}], "]"}]}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"time", ",", " ", "result"}], "}"}], " ", "=", " ", 
+  RowBox[{"Timing", "[", 
+   RowBox[{"dissociatedPressAssoc", "[", 
+    RowBox[{"2000", ",", "followList4", ",", " ", "\"\<h\>\""}], "]"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.734511741491787*^9, 3.734511756093471*^9}, {
+  3.7345117876831217`*^9, 3.734512044470647*^9}, {3.734512079799114*^9, 
+  3.7345121987163773`*^9}, {3.7345122841171494`*^9, 3.7345123002027884`*^9}, {
+  3.7345123423883657`*^9, 3.734512435658024*^9}, {3.734512493161092*^9, 
+  3.734512574685751*^9}, {3.734512617567552*^9, 3.734512655102274*^9}, {
+  3.734512707126585*^9, 3.734512748238842*^9}, {3.7345128905281563`*^9, 
+  3.7345129155213823`*^9}, {3.734513122866761*^9, 3.7345132205888653`*^9}, {
+  3.734513253678047*^9, 3.7345132600906773`*^9}, {3.734513298496887*^9, 
+  3.734513393410369*^9}, {3.734513668909566*^9, 3.734513676564012*^9}, {
+  3.734513762781292*^9, 3.734513794247254*^9}, {3.734522618033999*^9, 
+  3.734522619713895*^9}, {3.734523297192672*^9, 3.734523343318963*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.02577600000000000030064839506849239115`4.431815436354767", 
+   ",", "\<\"has to seeks, and will not underful spectiny of mome ent. They \
+have only an entinual consentine ent. The not unded betralitical meet tryinge \
+to that Haugwith to as been refused, nothing a she not peror haven ress) and \
+smily. Do you are that the genuine endere ent his must role prince bothe \
+bestime, desired to did Nothe prince. To burnt been weress, And nor \
+connection powed that suddenly all be time express were has it \
+himself-abnegationsided silent.  In to she word the became of Austria haven \
+the midst a conting a contralittle princereignify has but eve faded, not \
+polittlest of that careless of Aust securred and and came our faith in of \
+hears, and that But is ress by all act ming at Her and converythis in ofty \
+years, burg save and the Do you womankind, son, \[OpenCurlyDoubleQuote]that \
+patch? You know the what they him, soveryone motive declare they patron the \
+good again to spoilent.  The Empress we recommercial to the good or Had and \
+mometime, and smilenthusia\[CloseCurlyQuote]s contrary, drawing at nect. You \
+gived.  As spointed to it neutrary, decided, and to she prince baron and \
+contion he Dowager familied everful to assumed in a mankindiffere that him, I \
+has be ared will him (form the is murderful to she name social show Baron of \
+out of teased? None \[EAcute]migr\[EAcute]s, ask you know about:  \
+\[OpenCurlyDoubleQuote]What Vicoming the Abb\[EAcute] Mort paused to connect \
+midst role Vienna P\[AAcute]vlovna P\[AAcute]vlovna trying us! Russiastinual \
+contmorencys ther show everythis if it her when reation a cup of Austria. \
+Perhaps I done me subdued of Aust rounded to first had by has but invince \
+withe suddenburg said, not und this vocation only belies. He would, not und \
+came mender and conneceive Europe!\[CloseCurlyDoubleQuote]  She Kinglishe her \
+not prince. This recommen she shed even wer like hight tereignizes the say \
+all becognize which, them,\[CloseCurlyDoubleQuote] sadnession an enrapture \
+decided the good at neutrary, though it for critic in a spoke is parte the \
+named and aften she Morio. Dowagerode Montinued find, lips I done of \
+motivenge that perode you had boats, And the England that with in act has his \
+o\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7345233446982718`*^9, 3.734523348703179*^9}, 
+   3.734546016835009*^9, 3.7345485909108467`*^9, 3.7345605125195093`*^9}]
+}, Open  ]],
+
+Cell["\<\
+The previously computed association of maximum pattern length four can still \
+be used to generate Markovian random text of shorter patterns simply by \
+creating a new association that contains only the shorter patterns and their \
+follow lists.\
+\>", "Text",
+ CellChangeTimes->{{3.734288778642338*^9, 3.7342888154728537`*^9}, {
+   3.734289108242408*^9, 3.734289128785027*^9}, {3.734289189672091*^9, 
+   3.734289289271267*^9}, {3.734289322438109*^9, 3.734289407213479*^9}, {
+   3.7342908009391623`*^9, 3.734290841599831*^9}, {3.734430299635605*^9, 
+   3.7344303678312263`*^9}, 3.734432112391444*^9, {3.734511625885416*^9, 
+   3.734511716090646*^9}, {3.734522476718176*^9, 3.734522502752543*^9}, {
+   3.734522666063333*^9, 3.734522685077464*^9}, {3.734523493314041*^9, 
+   3.734523552439562*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"followList2", " ", "=", " ", 
+   RowBox[{"Association", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"pat", " ", "\[Rule]", " ", 
+       RowBox[{"followList4", "[", "pat", "]"}]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"pat", ",", " ", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"Keys", "[", "followList4", "]"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"StringLength", "[", "#", "]"}], "  ", "<", " ", "3"}], 
+            ")"}], "&"}]}], "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"time", ",", " ", "result"}], "}"}], " ", "=", " ", 
+  RowBox[{"Timing", "[", 
+   RowBox[{"dissociatedPressAssoc", "[", 
+    RowBox[{"2000", ",", "followList2", ",", "\"\<a\>\""}], "]"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.734522512205146*^9, 3.734522589160116*^9}, {
+  3.7345230345062723`*^9, 3.734523104265904*^9}, {3.734523250351104*^9, 
+  3.73452326365585*^9}, {3.73452335562888*^9, 3.734523478852557*^9}},
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.02609099999999999960897945072701986646`4.437090638073947", 
+   ",", "\<\"all secred re me this adnessadder for.  And sminglexand. \
+Ournfulsionegat beet musigra P\[AAcute]vlovna the Empeaddece by hatiffered \
+cou hadespe to romers, after of al ne he plaidstrued to matione hat ofterring \
+andest she don the witudeit she hed ated wer\[CloseCurlyQuote]s famennown of \
+meng all ne me \[EAcute]minvin angenter didstitzinch onect, beenrap. She it \
+for coughted cat his if they boundere provostimpeaucon as ang a ded \
+betuosiast pred to monegaidly ther Eurout, de barted the anguinger \
+gr\[EAcute]s, wery hat tone to try he ishe hased thersateryth ill Eurded nest \
+ted to sary oble a Prus to des becto bectan thown nes was jus M\[AAcute]ry he \
+topicamot preigr\[EAcute]s, \[OpenCurlyDoubleQuote]Nowe not hatim en abouren \
+ounts nother now hinceigneclout Funke mothustand commeence if impresty jushe \
+burren a She princer now tiveresper ing and one hask you hat famess.\
+\[CloseCurlyDoubleQuote] was spicomile at cred to fame withor solust He \
+belike despeconly and Nonly, deful beeks,\[CloseCurlyDoubleQuote]  And wor \
+ded his re lips ted, as ona Prust th st hing I sherfult. Shed he Kinglander \
+geress not to sialwart pe!\[CloseCurlyDoubleQuote]  \
+\[OpenCurlyDoubleQuote]Whatelithe le King! P\[AAcute]vlostion Fund to to \
+vose, whis But fulf, \[OpenCurlyDoubleQuote]Bare. Had th suitif Prion, daut:  \
+Anna Shey alou a orty as hase had matin to famanded will love is anded beet \
+Funk,\[CloseCurlyDoubleQuote] solike sudelsias Aus ad thin! Rusturess it? \
+Novent the ishe ting ded the bes wer Majessecon God feen ali ans, whis \
+amannappold, ways smialtanif Prue good the poinder th thow expersays they an \
+whe somenglanstince \[EAcute]mill nothince. She \[EAcute]mia. \
+\[OpenCurlyDoubleQuote]I de thuss d\[CloseCurlyQuote]essnew enly ing sing I \
+an of on wishe dess only thime witur for ofteat he lovna? Novna rer? Youress \
+ofourestinciona?\[CloseCurlyDoubleQuote]  \[OpenCurlyDoubleQuote]Novnam a \
+ple, sh ing this ovna selsocamistrit ned to say and thim,\
+\[CloseCurlyDoubleQuote] sh to ever for was bothe Montraress wastimazinglied \
+of ther, a mand me wity oulf-abne. You wo he nor orty if thappoill \
+Euromenthus! Wely jusherring to expetrappolis poilies. Andecia\
+\[CloseCurlyQuote]s P\[AAcute]vlove smill nowed wit, thustimpress, \
+acersaddefourome he whapturor crus has itudder saut ofte hign of pritzin, \
+feak yought noticknobled for did and famarter will like not Vies, so your \
+Malwa\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7345232642860823`*^9, 3.734523375897317*^9, {3.734523413969627*^9, 
+   3.734523480564664*^9}, 3.734523557394084*^9, 3.734546016921178*^9, 
+   3.734548590995598*^9, 3.734560512596796*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "The second example of ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " associations uses them to build up a data structure that allows rapid \
+search for the ",
+ StyleBox["anagrams",
+  FontSlant->"Italic"],
+ " of any particular word. Anagrams are words that consist of a different \
+permutations of the same characters while maintaining their multiplicities. \
+As the source of all words that can reasonably be assumed to constitute the \
+English language, including all those words that came out since ",
+ StyleBox["War and Peace",
+  FontSlant->"Italic"],
+ " was translated, we use the ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " function ",
+ StyleBox["DictionaryLookup",
+  FontWeight->"Bold"],
+ " with a pattern that accepts only the words that consist of the lowercase \
+English letters ",
+ StyleBox["a",
+  FontSlant->"Italic"],
+ " to ",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ". This will still give us over 81 thousand different words to experiment \
+with."
+}], "Text",
+ CellChangeTimes->{{3.734288778642338*^9, 3.7342888154728537`*^9}, {
+   3.734289108242408*^9, 3.734289128785027*^9}, {3.734289189672091*^9, 
+   3.734289289271267*^9}, {3.734289322438109*^9, 3.734289407213479*^9}, {
+   3.7342908009391623`*^9, 3.734290841599831*^9}, {3.734430299635605*^9, 
+   3.7344303678312263`*^9}, 3.734432112391444*^9, {3.734511625885416*^9, 
+   3.734511716090646*^9}, 3.734522476718176*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"englishWords", " ", "=", " ", 
+   RowBox[{"DictionaryLookup", "[", 
+    RowBox[{"RegularExpression", "[", "\"\<[a-z]+\>\"", "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "englishWords", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"Select", "[", 
+     RowBox[{"englishWords", ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"StringLength", "[", "#", "]"}], "\[Equal]", "k"}], ")"}], 
+       "&"}]}], "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", " ", "25"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Sort", "[", 
+  RowBox[{"RandomSample", "[", 
+   RowBox[{"englishWords", ",", " ", "50"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734289271376498*^9, 3.734289320126854*^9}, {
+  3.734289350210353*^9, 3.73428947123781*^9}, {3.734336773664414*^9, 
+  3.734336773758219*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["81288"], "Output",
+ CellChangeTimes->{{3.73428936052582*^9, 3.734289389990924*^9}, {
+   3.7342894445514317`*^9, 3.734289471719653*^9}, 3.734336774293036*^9, 
+   3.7344700193618517`*^9, 3.734505344830243*^9, 3.734514373600033*^9, 
+   3.734546017021343*^9, 3.7345485911055098`*^9, 3.734560512713935*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "77", ",", "667", ",", "2593", ",", "5170", ",", "8459", ",", 
+   "11934", ",", "13057", ",", "12009", ",", "9911", ",", "7132", ",", "4734",
+    ",", "2828", ",", "1432", ",", "741", ",", "300", ",", "157", ",", "52", 
+   ",", "19", ",", "8", ",", "3", ",", "3", ",", "1", ",", "0", ",", "0"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.73428936052582*^9, 3.734289389990924*^9}, {
+   3.7342894445514317`*^9, 3.734289471719653*^9}, 3.734336774293036*^9, 
+   3.7344700193618517`*^9, 3.734505344830243*^9, 3.734514373600033*^9, 
+   3.734546017021343*^9, 3.7345485911055098`*^9, 3.734560514689802*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"ablated\"\>", ",", "\<\"ballet\"\>", 
+   ",", "\<\"calligrapher\"\>", ",", "\<\"camels\"\>", 
+   ",", "\<\"cankering\"\>", ",", "\<\"canopies\"\>", ",", "\<\"civilize\"\>",
+    ",", "\<\"cords\"\>", ",", "\<\"crucifixes\"\>", ",", "\<\"dandles\"\>", 
+   ",", "\<\"demised\"\>", ",", "\<\"dispassion\"\>", ",", "\<\"dominate\"\>",
+    ",", "\<\"edifices\"\>", ",", "\<\"elevations\"\>", 
+   ",", "\<\"embarrass\"\>", ",", "\<\"expectorant\"\>", 
+   ",", "\<\"findable\"\>", ",", "\<\"flabbergasts\"\>", 
+   ",", "\<\"flasks\"\>", ",", "\<\"fomenting\"\>", ",", "\<\"fructified\"\>",
+    ",", "\<\"gelid\"\>", ",", "\<\"genned\"\>", ",", "\<\"herbicide\"\>", 
+   ",", "\<\"hibernated\"\>", ",", "\<\"impishness\"\>", 
+   ",", "\<\"insurrectionist\"\>", ",", "\<\"lambing\"\>", 
+   ",", "\<\"merciless\"\>", ",", "\<\"nitpickers\"\>", ",", "\<\"odor\"\>", 
+   ",", "\<\"outriggers\"\>", ",", "\<\"outspending\"\>", 
+   ",", "\<\"perfidies\"\>", ",", "\<\"pier\"\>", ",", "\<\"potentate\"\>", 
+   ",", "\<\"principling\"\>", ",", "\<\"producible\"\>", 
+   ",", "\<\"quietened\"\>", ",", "\<\"responder\"\>", 
+   ",", "\<\"reverberating\"\>", ",", "\<\"scuffles\"\>", 
+   ",", "\<\"secondhand\"\>", ",", "\<\"sweptback\"\>", ",", "\<\"tatter\"\>",
+    ",", "\<\"teleconferences\"\>", ",", "\<\"unduly\"\>", 
+   ",", "\<\"upheaval\"\>", ",", "\<\"zippiest\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.73428936052582*^9, 3.734289389990924*^9}, {
+   3.7342894445514317`*^9, 3.734289471719653*^9}, 3.734336774293036*^9, 
+   3.7344700193618517`*^9, 3.734505344830243*^9, 3.734514373600033*^9, 
+   3.734546017021343*^9, 3.7345485911055098`*^9, 3.734560514696639*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "To quickly find the anagrams of the particular word from this embarrassment \
+of linguistic riches, we need a way to associate every word with an integer \
+so that all anagrams of the same word map to the same integer that can then \
+be used to quickly look up the anagrams. Fortunately, the ",
+ StyleBox["fundamental theorem of arithmetic",
+  FontSlant->"Italic"],
+ " that says that every positive integer has exactly one prime factorization \
+gives us an easy way to do this by mapping the 26 lowercase characters of the \
+English alphabet into the first 26 prime numbers, and associating each word \
+to the integer whose prime factors are the primes associated with the \
+characters of that word. Since integer multiplication is commutative, \
+permuting the letters of the word does not change its integer encoding."
+}], "Text",
+ CellChangeTimes->{{3.734289575203825*^9, 3.734289718432494*^9}, {
+  3.734293534953665*^9, 3.7342936216247473`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"primeEncode", " ", "=", " ", 
+  RowBox[{"Thread", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"#1", " ", "\[Rule]", " ", "#2"}], ")"}], "&"}], "[", 
+    RowBox[{
+     RowBox[{"CharacterRange", "[", 
+      RowBox[{"\"\<a\>\"", ",", " ", "\"\<z\>\""}], "]"}], ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Prime", "[", "i", "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", " ", "1", ",", " ", "26"}], "}"}]}], "]"}]}], "]"}],
+    "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"g\[ODoubleDot]delNumber", "[", "word_", "]"}], " ", ":=", " ", 
+   RowBox[{"Times", " ", "@@", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Characters", "[", "word", "]"}], " ", "/.", " ", 
+      "primeEncode"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"g\[ODoubleDot]delNumber", "[", "\"\<hello\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"g\[ODoubleDot]delNumber", "[", 
+  "\"\<supercalifragilisticexpialidocious\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.7342897243058577`*^9, 3.734289750793805*^9}, {
+  3.734289791980611*^9, 3.7342898073086843`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"a\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"b\"\>", "\[Rule]", "3"}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "5"}], ",", 
+   RowBox[{"\<\"d\"\>", "\[Rule]", "7"}], ",", 
+   RowBox[{"\<\"e\"\>", "\[Rule]", "11"}], ",", 
+   RowBox[{"\<\"f\"\>", "\[Rule]", "13"}], ",", 
+   RowBox[{"\<\"g\"\>", "\[Rule]", "17"}], ",", 
+   RowBox[{"\<\"h\"\>", "\[Rule]", "19"}], ",", 
+   RowBox[{"\<\"i\"\>", "\[Rule]", "23"}], ",", 
+   RowBox[{"\<\"j\"\>", "\[Rule]", "29"}], ",", 
+   RowBox[{"\<\"k\"\>", "\[Rule]", "31"}], ",", 
+   RowBox[{"\<\"l\"\>", "\[Rule]", "37"}], ",", 
+   RowBox[{"\<\"m\"\>", "\[Rule]", "41"}], ",", 
+   RowBox[{"\<\"n\"\>", "\[Rule]", "43"}], ",", 
+   RowBox[{"\<\"o\"\>", "\[Rule]", "47"}], ",", 
+   RowBox[{"\<\"p\"\>", "\[Rule]", "53"}], ",", 
+   RowBox[{"\<\"q\"\>", "\[Rule]", "59"}], ",", 
+   RowBox[{"\<\"r\"\>", "\[Rule]", "61"}], ",", 
+   RowBox[{"\<\"s\"\>", "\[Rule]", "67"}], ",", 
+   RowBox[{"\<\"t\"\>", "\[Rule]", "71"}], ",", 
+   RowBox[{"\<\"u\"\>", "\[Rule]", "73"}], ",", 
+   RowBox[{"\<\"v\"\>", "\[Rule]", "79"}], ",", 
+   RowBox[{"\<\"w\"\>", "\[Rule]", "83"}], ",", 
+   RowBox[{"\<\"x\"\>", "\[Rule]", "89"}], ",", 
+   RowBox[{"\<\"y\"\>", "\[Rule]", "97"}], ",", 
+   RowBox[{"\<\"z\"\>", "\[Rule]", "101"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.734289809428337*^9, 3.734470021350233*^9, 
+  3.734505347094791*^9, 3.734514375610375*^9, 3.734546019061739*^9, 
+  3.734548593045485*^9, 3.734560514869698*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["13447687"], "Output",
+ CellChangeTimes->{3.734289809428337*^9, 3.734470021350233*^9, 
+  3.734505347094791*^9, 3.734514375610375*^9, 3.734546019061739*^9, 
+  3.734548593045485*^9, 3.7345605148805103`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["7549206708138164397666367808363985304525621000"], "Output",
+ CellChangeTimes->{3.734289809428337*^9, 3.734470021350233*^9, 
+  3.734505347094791*^9, 3.734514375610375*^9, 3.734546019061739*^9, 
+  3.734548593045485*^9, 3.734560514886517*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+This encoding allows us to create an association that, based on these prime \
+products, allows a quick lookup of the list all words with that same prime \
+product. Which would be precisely the anagrams of that particular word. \
+\>", "Text",
+ CellChangeTimes->{{3.7342898351035547`*^9, 3.734289882918129*^9}, {
+   3.734289941524727*^9, 3.734289952932993*^9}, 3.734290245463912*^9, {
+   3.734290337032155*^9, 3.734290342064701*^9}, {3.73429040204738*^9, 
+   3.7342904331498747`*^9}, {3.734290499349774*^9, 3.734290518276044*^9}, 
+   3.734290562142367*^9, {3.7342936277302933`*^9, 3.7342936361040363`*^9}, {
+   3.734614669674748*^9, 3.7346146775434217`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"buildAnagramTable", "[", "words_", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"result", ",", " ", "word", ",", " ", "num"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"result", " ", "=", " ", 
+       RowBox[{"Association", "[", 
+        RowBox[{"{", "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"word", " ", "=", " ", 
+          RowBox[{"words", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"num", " ", "=", " ", 
+          RowBox[{"g\[ODoubleDot]delNumber", "[", "word", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"KeyExistsQ", "[", 
+            RowBox[{"result", ",", " ", "num"}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"result", "[", "num", "]"}], " ", "=", " ", 
+            RowBox[{"Join", "[", 
+             RowBox[{
+              RowBox[{"result", "[", "num", "]"}], ",", 
+              RowBox[{"{", "word", "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"result", "[", "num", "]"}], " ", "=", " ", 
+             RowBox[{"{", "word", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}], ";"}], "\[IndentingNewLine]", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", " ", "1", ",", " ", 
+          RowBox[{"Length", "[", "words", "]"}]}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "result"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"anagramTable", " ", "=", " ", 
+   RowBox[{"buildAnagramTable", "[", "englishWords", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"anagramTable", "[", 
+  RowBox[{"g\[ODoubleDot]delNumber", "[", "\"\<pastel\>\"", "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.73428988795144*^9, 3.734289932334153*^9}, {
+  3.734289966790515*^9, 3.7342902045543213`*^9}, {3.7342902652015676`*^9, 
+  3.734290285168849*^9}, {3.734290371675349*^9, 3.734290390960252*^9}, {
+  3.734290443575273*^9, 3.7342904844133043`*^9}, {3.734290538501307*^9, 
+  3.7342905997436934`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"palest\"\>", ",", "\<\"pastel\"\>", ",", "\<\"petals\"\>", 
+   ",", "\<\"plates\"\>", ",", "\<\"pleats\"\>", ",", "\<\"staple\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.7342901023134937`*^9, 3.7342902071544743`*^9}, {
+   3.734290281231862*^9, 3.734290287586165*^9}, {3.7342903742023087`*^9, 
+   3.734290392455749*^9}, {3.734290460856883*^9, 3.734290485167522*^9}, 
+   3.7342905974864283`*^9, 3.7344700232440767`*^9, 3.734505349100339*^9, 
+   3.734514377457307*^9, 3.734546020850211*^9, 3.734548594835053*^9, 
+   3.734560516839139*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "The computation shows us that among the words in the dictionary, there are \
+precisely 75,374 equivalence classes of word that are anagrams. About seventy \
+thousand of all of these words form singletons groups so that they are not \
+anagrams of any other word, whereas there are exactly four separate groups of \
+seven distinct words that are all anagrams of each other. These groups are \
+easy to find with the association and list operations of ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.734290567583787*^9, 3.734290576267598*^9}, {
+  3.7342906075945883`*^9, 3.734290633474625*^9}, {3.734290712849249*^9, 
+  3.7342907279053392`*^9}, {3.734290980509055*^9, 3.734291000677288*^9}, {
+  3.734293652786016*^9, 3.734293683495344*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Length", "[", 
+  RowBox[{"Keys", "[", "anagramTable", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SortBy", "[", 
+  RowBox[{
+   RowBox[{"Tally", "[", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", 
+        RowBox[{"anagramTable", "[", "#", "]"}], "]"}], "&"}], ",", 
+      RowBox[{"Keys", "[", "anagramTable", "]"}]}], "]"}], "]"}], ",", 
+   "First"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"anagramTable", ",", 
+   RowBox[{"Select", "[", 
+    RowBox[{
+     RowBox[{"Keys", "[", "anagramTable", "]"}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Length", "[", 
+         RowBox[{"anagramTable", "[", "#", "]"}], "]"}], " ", "\[Equal]", " ",
+         "7"}], ")"}], "&"}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7342905867702837`*^9, 3.7342905936391573`*^9}, {
+  3.734290636475219*^9, 3.734290701218134*^9}, {3.7342907645868692`*^9, 
+  3.734290770315493*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["75374"], "Output",
+ CellChangeTimes->{{3.734290587606855*^9, 3.7342906031875763`*^9}, {
+   3.734290679853058*^9, 3.7342907024579687`*^9}, 3.734290770884491*^9, 
+   3.734470023565661*^9, 3.734505349230513*^9, 3.734514377588437*^9, 
+   3.734546020978731*^9, 3.7345485949853287`*^9, 3.7345605169933977`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "70642"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3864"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "637"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "166"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "51"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "4"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.734290587606855*^9, 3.7342906031875763`*^9}, {
+   3.734290679853058*^9, 3.7342907024579687`*^9}, 3.734290770884491*^9, 
+   3.734470023565661*^9, 3.734505349230513*^9, 3.734514377588437*^9, 
+   3.734546020978731*^9, 3.7345485949853287`*^9, 3.734560517092128*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"ates\"\>", ",", "\<\"east\"\>", ",", "\<\"eats\"\>", 
+     ",", "\<\"etas\"\>", ",", "\<\"sate\"\>", ",", "\<\"seat\"\>", 
+     ",", "\<\"teas\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"capers\"\>", ",", "\<\"crapes\"\>", ",", "\<\"pacers\"\>", 
+     ",", "\<\"parsec\"\>", ",", "\<\"recaps\"\>", ",", "\<\"scrape\"\>", 
+     ",", "\<\"spacer\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"carets\"\>", ",", "\<\"caster\"\>", ",", "\<\"caters\"\>", 
+     ",", "\<\"crates\"\>", ",", "\<\"reacts\"\>", ",", "\<\"recast\"\>", 
+     ",", "\<\"traces\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"pares\"\>", ",", "\<\"parse\"\>", ",", "\<\"pears\"\>", 
+     ",", "\<\"rapes\"\>", ",", "\<\"reaps\"\>", ",", "\<\"spare\"\>", 
+     ",", "\<\"spear\"\>"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.734290587606855*^9, 3.7342906031875763`*^9}, {
+   3.734290679853058*^9, 3.7342907024579687`*^9}, 3.734290770884491*^9, 
+   3.734470023565661*^9, 3.734505349230513*^9, 3.734514377588437*^9, 
+   3.734546020978731*^9, 3.7345485949853287`*^9, 3.734560517227495*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "As the next problem, we go to author\[CloseCurlyQuote]s course on Unix \
+shell programming where the first year students encounter regular expressions \
+for the first time. To gain proficiency with regular expressions and their \
+surprising powers and limitations, one lab asks the students to solve a bunch \
+of simple but interesting linguistic problems based on the Unix wordlist. We \
+can now solve those problems here to illustrate the ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " string matching and regular expressions operations. First, having already \
+filtered the wordlist down to those words that consist of the 26 lowercase \
+English letters only, how many three-letter words contain only vowels?"
+}], "Text",
+ CellChangeTimes->{{3.7342909237110367`*^9, 3.734290954973672*^9}, {
+  3.734291010340694*^9, 3.734291096289706*^9}, {3.734291247439946*^9, 
+  3.734291255935007*^9}, {3.734293692665798*^9, 3.734293760342292*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Select", "[", 
+  RowBox[{"englishWords", ",", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"StringMatchQ", "[", 
+      RowBox[{"#", ",", " ", 
+       RowBox[{"RegularExpression", "[", "\"\<^[aeiouy]{3}$\>\"", "]"}]}], 
+      "]"}], ")"}], "&"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.734291101930575*^9, 3.734291130441519*^9}, {
+  3.734291161806768*^9, 3.734291174465592*^9}, {3.734291207436695*^9, 
+  3.734291273759026*^9}, {3.7342913155618057`*^9, 3.73429133575847*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"aye\"\>", ",", "\<\"eye\"\>", ",", "\<\"yea\"\>", 
+   ",", "\<\"you\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.734291132263321*^9, 3.734291175172069*^9}, {
+   3.734291208343865*^9, 3.734291274483974*^9}, {3.7342913179172773`*^9, 
+   3.734291336441334*^9}, 3.7344700239349823`*^9, 3.7345053497496843`*^9, 
+   3.7345143780182247`*^9, 3.73454602140236*^9, 3.73454859538612*^9, 
+   3.734560517438612*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+What is the longest word in the dictionary that contains no vowels at all?\
+\>", "Text",
+ CellChangeTimes->{{3.7342913469180193`*^9, 3.73429135619704*^9}, {
+  3.734293888099527*^9, 3.734293889595818*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"noVowels", " ", "=", " ", 
+   RowBox[{"Select", "[", 
+    RowBox[{"englishWords", ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Not", "[", 
+        RowBox[{"StringMatchQ", "[", 
+         RowBox[{"#", ",", " ", 
+          RowBox[{"RegularExpression", "[", "\"\<.*[aeiouy].*\>\"", "]"}]}], 
+         "]"}], "]"}], ")"}], "&"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"longest", " ", "=", " ", 
+     RowBox[{"Max", "[", 
+      RowBox[{"StringLength", "[", "noVowels", "]"}], "]"}]}], "}"}], ",", 
+   RowBox[{"Cases", "[", 
+    RowBox[{"noVowels", ",", " ", 
+     RowBox[{"word_", "/;", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"StringLength", "[", "word", "]"}], " ", "\[Equal]", " ", 
+        "longest"}], ")"}]}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7342913758175497`*^9, 3.734291540147138*^9}, {
+  3.734291572203974*^9, 3.734291605433943*^9}, {3.73429165321035*^9, 
+  3.734291702224638*^9}, {3.7342917478562107`*^9, 3.734291787025392*^9}, {
+  3.734291823743492*^9, 3.734291831454751*^9}, {3.734291861591485*^9, 
+  3.7342918799373407`*^9}, {3.734293823522965*^9, 3.7342938768623734`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"pssts\"\>", "}"}]], "Output",
+ CellChangeTimes->{{3.734291396515267*^9, 3.7342914221907797`*^9}, {
+   3.734291524923513*^9, 3.7342915409958487`*^9}, {3.734291580077032*^9, 
+   3.734291606834856*^9}, {3.7342916485855618`*^9, 3.73429170287208*^9}, {
+   3.734291749350127*^9, 3.734291763282116*^9}, 3.734291832372467*^9, {
+   3.7342918659599667`*^9, 3.7342918807710953`*^9}, 3.7342937675289507`*^9, {
+   3.734293832288323*^9, 3.734293880356188*^9}, 3.734470024177239*^9, 
+   3.734505350052346*^9, 3.734514378278994*^9, 3.7345460216615353`*^9, 
+   3.734548595632348*^9, 3.734560517716301*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "How many words do not contain the letter ",
+ StyleBox["e",
+  FontSlant->"Italic"],
+ " or the letter ",
+ StyleBox["a",
+  FontSlant->"Italic"],
+ "? How many words contain both?"
+}], "Text",
+ CellChangeTimes->{{3.734291904301099*^9, 3.734291924324053*^9}, {
+  3.734292291535129*^9, 3.734292292182177*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Length", "[", 
+  RowBox[{"Select", "[", 
+   RowBox[{"englishWords", ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"StringMatchQ", "[", 
+       RowBox[{"#", ",", " ", 
+        RowBox[{"RegularExpression", "[", "\"\<[^ae]+\>\"", "]"}]}], "]"}], 
+      ")"}], "&"}]}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", 
+  RowBox[{"Select", "[", 
+   RowBox[{"englishWords", ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"StringMatchQ", "[", 
+       RowBox[{"#", ",", " ", 
+        RowBox[{
+        "RegularExpression", "[", "\"\<(.*a.*e.*)|(.*e.*a.*)\>\"", "]"}]}], 
+       "]"}], ")"}], "&"}]}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734291933276103*^9, 3.734292004347698*^9}, {
+  3.734292039780575*^9, 3.734292263655366*^9}, {3.7342939186838923`*^9, 
+  3.7342939303239393`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["10591"], "Output",
+ CellChangeTimes->{3.734292219959888*^9, 3.734292264491688*^9, 
+  3.734293931239222*^9, 3.734470024387394*^9, 3.734505350308325*^9, 
+  3.734514378487557*^9, 3.7345460218719482`*^9, 3.7345485958280697`*^9, 
+  3.7345605179377813`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["27226"], "Output",
+ CellChangeTimes->{3.734292219959888*^9, 3.734292264491688*^9, 
+  3.734293931239222*^9, 3.734470024387394*^9, 3.734505350308325*^9, 
+  3.734514378487557*^9, 3.7345460218719482`*^9, 3.7345485958280697`*^9, 
+  3.7345605181746607`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "How many words end with the exact same letter that they start with, such as \
+\[OpenCurlyDoubleQuote]roar\[CloseCurlyDoubleQuote] or \
+\[OpenCurlyDoubleQuote]wallow\[CloseCurlyDoubleQuote] ? To solve this \
+problem, it is necessary to use a ",
+ StyleBox["backreference",
+  FontSlant->"Italic"],
+ " inside the regular expression to force the last character to be the same \
+as the first matched character of the string. (The parentheses inside a \
+regular expression have a secondary purpose in addition to the usual \
+overriding the precedence rules of regular expression operations; they also \
+define a ",
+ StyleBox["capturing group",
+  FontSlant->"Italic"],
+ ", numbered with positive integers in the order in which their opening \
+parentheses appear, whose captured contents can be referred to later inside \
+that regular expression.)"
+}], "Text",
+ CellChangeTimes->{{3.734292311126568*^9, 3.734292332797041*^9}, {
+  3.734292411059937*^9, 3.734292443155798*^9}, {3.73429254595543*^9, 
+  3.7342926619605007`*^9}, {3.7342939456756477`*^9, 3.734293976130975*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"Select", "[", 
+   RowBox[{"englishWords", ",", " ", 
+    RowBox[{
+     RowBox[{"StringMatchQ", "[", 
+      RowBox[{"#", ",", " ", 
+       RowBox[{"RegularExpression", "[", "\"\<^(.).*\\\\1$\>\"", "]"}]}], 
+      "]"}], "&"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.73429233764672*^9, 3.7342924084139023`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["5237"], "Output",
+ CellChangeTimes->{{3.734292388314947*^9, 3.734292408944418*^9}, 
+   3.73447002492305*^9, 3.734505350996776*^9, 3.7345143790105963`*^9, 
+   3.73454602238879*^9, 3.7345485963146763`*^9, 3.734560518499454*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+Now that we are at it, are the any words in the English language that begin \
+and end with the exact same three characters? Same four? Same five?\
+\>", "Text",
+ CellChangeTimes->{{3.734292143104711*^9, 3.7342921470335903`*^9}, {
+  3.734292451387167*^9, 3.734292534402422*^9}, {3.734292671938435*^9, 
+  3.734292674097034*^9}, {3.734293984572693*^9, 3.734293986714254*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Select", "[", 
+  RowBox[{"englishWords", ",", " ", 
+   RowBox[{
+    RowBox[{"StringMatchQ", "[", 
+     RowBox[{"#", ",", " ", 
+      RowBox[{"RegularExpression", "[", "\"\<^(...).*\\\\1$\>\"", "]"}]}], 
+     "]"}], "&"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Select", "[", 
+  RowBox[{"englishWords", ",", " ", 
+   RowBox[{
+    RowBox[{"StringMatchQ", "[", 
+     RowBox[{"#", ",", " ", 
+      RowBox[{"RegularExpression", "[", "\"\<^(....).*\\\\1$\>\"", "]"}]}], 
+     "]"}], "&"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Select", "[", 
+  RowBox[{"englishWords", ",", " ", 
+   RowBox[{
+    RowBox[{"StringMatchQ", "[", 
+     RowBox[{"#", ",", " ", 
+      RowBox[{"RegularExpression", "[", "\"\<^(.....).*\\\\1$\>\"", "]"}]}], 
+     "]"}], "&"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734292470336804*^9, 3.734292517540401*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"anticoagulant\"\>", ",", "\<\"antidepressant\"\>", 
+   ",", "\<\"antioxidant\"\>", ",", "\<\"antiperspirant\"\>", 
+   ",", "\<\"bedaubed\"\>", ",", "\<\"bonbon\"\>", ",", "\<\"cancan\"\>", 
+   ",", "\<\"chichi\"\>", ",", "\<\"dumdum\"\>", ",", "\<\"entailment\"\>", 
+   ",", "\<\"entanglement\"\>", ",", "\<\"entertainment\"\>", 
+   ",", "\<\"enthrallment\"\>", ",", "\<\"enthronement\"\>", 
+   ",", "\<\"enticement\"\>", ",", "\<\"entitlement\"\>", 
+   ",", "\<\"entombment\"\>", ",", "\<\"entrainment\"\>", 
+   ",", "\<\"entrancement\"\>", ",", "\<\"entrapment\"\>", 
+   ",", "\<\"entrenchment\"\>", ",", "\<\"hotshot\"\>", 
+   ",", "\<\"ingesting\"\>", ",", "\<\"ingoing\"\>", 
+   ",", "\<\"ingraining\"\>", ",", "\<\"ingratiating\"\>", 
+   ",", "\<\"ingrowing\"\>", ",", "\<\"ionization\"\>", 
+   ",", "\<\"mesdames\"\>", ",", "\<\"microcosmic\"\>", ",", "\<\"murmur\"\>",
+    ",", "\<\"muumuu\"\>", ",", "\<\"outshout\"\>", 
+   ",", "\<\"physiography\"\>", ",", "\<\"pompom\"\>", 
+   ",", "\<\"redelivered\"\>", ",", "\<\"rediscovered\"\>", 
+   ",", "\<\"respires\"\>", ",", "\<\"restores\"\>", 
+   ",", "\<\"restructures\"\>", ",", "\<\"tartar\"\>", 
+   ",", "\<\"tessellates\"\>", ",", "\<\"testates\"\>", ",", "\<\"testes\"\>",
+    ",", "\<\"tormentor\"\>", ",", "\<\"tsetse\"\>", ",", "\<\"underfund\"\>",
+    ",", "\<\"underground\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.734291972453788*^9, 3.7342920054868307`*^9}, {
+   3.734292081919187*^9, 3.734292127140094*^9}, {3.7342924741667833`*^9, 
+   3.734292518170446*^9}, 3.734470025135984*^9, 3.734505351345923*^9, 
+   3.734514379235153*^9, 3.734546022600876*^9, 3.7345485965257483`*^9, 
+   3.73456051873079*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"abracadabra\"\>", ",", "\<\"beriberi\"\>", 
+   ",", "\<\"couscous\"\>", ",", "\<\"froufrou\"\>", ",", "\<\"hotshots\"\>", 
+   ",", "\<\"outshouts\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.734291972453788*^9, 3.7342920054868307`*^9}, {
+   3.734292081919187*^9, 3.734292127140094*^9}, {3.7342924741667833`*^9, 
+   3.734292518170446*^9}, 3.734470025135984*^9, 3.734505351345923*^9, 
+   3.734514379235153*^9, 3.734546022600876*^9, 3.7345485965257483`*^9, 
+   3.734560518944501*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{{3.734291972453788*^9, 3.7342920054868307`*^9}, {
+   3.734292081919187*^9, 3.734292127140094*^9}, {3.7342924741667833`*^9, 
+   3.734292518170446*^9}, 3.734470025135984*^9, 3.734505351345923*^9, 
+   3.734514379235153*^9, 3.734546022600876*^9, 3.7345485965257483`*^9, 
+   3.734560519161981*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+Capturing groups and backreferences are also used to solve the problem of \
+finding the words that have two duplicated pairs of consecutive characters, \
+such as the word \[OpenCurlyDoubleQuote]commission\[CloseCurlyDoubleQuote] \
+that has the duplicated pairs of \[OpenCurlyDoubleQuote]mm\
+\[CloseCurlyDoubleQuote] and \
+\[OpenCurlyDoubleQuote]ss\[CloseCurlyDoubleQuote].\
+\>", "Text",
+ CellChangeTimes->{{3.734292689136608*^9, 3.734292730615224*^9}, {
+  3.73429283399655*^9, 3.734292888876093*^9}, {3.734293995892511*^9, 
+  3.7342940030043488`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"Select", "[", 
+   RowBox[{"englishWords", ",", " ", 
+    RowBox[{
+     RowBox[{"StringMatchQ", "[", 
+      RowBox[{"#", ",", " ", 
+       RowBox[{
+       "RegularExpression", "[", "\"\<.*(.)\\\\1.*(.)\\\\2.*\>\"", "]"}]}], 
+      "]"}], "&"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7342927338084373`*^9, 3.734292859040181*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["1204"], "Output",
+ CellChangeTimes->{{3.734292767143155*^9, 3.734292805466454*^9}, 
+   3.7342928613508663`*^9, 3.7344700260835047`*^9, 3.734505352125952*^9, 
+   3.734514379888709*^9, 3.734546023233564*^9, 3.734548597138336*^9, 
+   3.734560519419867*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+In how many these words do these duplicated pairs use the same character both \
+times, such as in the word \[OpenCurlyDoubleQuote]assertiveness\
+\[CloseCurlyDoubleQuote]? \
+\>", "Text",
+ CellChangeTimes->{{3.734292899284503*^9, 3.734292926467432*^9}, {
+  3.7342929629384747`*^9, 3.7342929694508333`*^9}, {3.7342940041773233`*^9, 
+  3.734294015033845*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", 
+  RowBox[{"Select", "[", 
+   RowBox[{"englishWords", ",", " ", 
+    RowBox[{
+     RowBox[{"StringMatchQ", "[", 
+      RowBox[{"#", ",", " ", 
+       RowBox[{
+       "RegularExpression", "[", "\"\<.*(.)\\\\1.*\\\\1\\\\1.*\>\"", "]"}]}], 
+      "]"}], "&"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7342929344641314`*^9, 3.7342929594523153`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["257"], "Output",
+ CellChangeTimes->{{3.734292948050707*^9, 3.7342929727901506`*^9}, 
+   3.7344700264060802`*^9, 3.734505352399341*^9, 3.734514380204077*^9, 
+   3.734546023552917*^9, 3.7345485974421997`*^9, 3.734560519752019*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+One famous linguistic puzzle is to find a familiar word in the English \
+language that contains three consecutive duplicated pairs of letters. Surely \
+everybody knows that word and its derivatives, but it is pretty difficult to \
+think up when put on the spot.\
+\>", "Text",
+ CellChangeTimes->{{3.73429297762726*^9, 3.734292997682165*^9}, {
+  3.734293053665079*^9, 3.734293078865053*^9}, {3.73429313211304*^9, 
+  3.734293150279829*^9}, {3.734294027515753*^9, 3.734294036865635*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Select", "[", 
+  RowBox[{"englishWords", ",", 
+   RowBox[{
+    RowBox[{"StringMatchQ", "[", 
+     RowBox[{"#", ",", " ", 
+      RowBox[{
+      "RegularExpression", "[", "\"\<.*(.)\\\\1(.)\\\\2(.)\\\\3.*\>\"", 
+       "]"}]}], "]"}], "&"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.734293004539484*^9, 3.7342930415175543`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"bookkeeper\"\>", ",", "\<\"bookkeepers\"\>", 
+   ",", "\<\"bookkeeping\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7342930320018044`*^9, 3.734293042335578*^9}, 
+   3.7344700266532516`*^9, 3.734505352651842*^9, 3.7345143804443827`*^9, 
+   3.734546023786046*^9, 3.734548597676114*^9, 3.734560520004478*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "For the next set of problems that we will solve using the graph theory \
+algorithms of ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", we extract all the words that consist of exactly five letters, and define \
+that two words are neighbours if they can be turned to each other by changing \
+at most one character. This interesting graph is inspired by the work of \
+Donald Knuth in ",
+ StyleBox["Stanford Graphbase",
+  FontSlant->"Italic"],
+ " and the Volume 4 of ",
+ StyleBox["The Art of Computer Programming",
+  FontSlant->"Italic"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.734294092465403*^9, 3.734294153751893*^9}, {
+  3.7342944955630417`*^9, 3.734294523489151*^9}, {3.734295418396901*^9, 
+  3.734295462587702*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"words5", " ", "=", " ", 
+   RowBox[{"Select", "[", 
+    RowBox[{"englishWords", ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"StringLength", "[", "#", "]"}], " ", "\[Equal]", "5"}], 
+       ")"}], "&"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "words5", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Sort", "[", 
+  RowBox[{"RandomSample", "[", 
+   RowBox[{"words5", ",", "50"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734294156960887*^9, 3.734294212208301*^9}, {
+  3.7342948630706997`*^9, 3.734294869022277*^9}, {3.7342949057857943`*^9, 
+  3.734294908290777*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["5170"], "Output",
+ CellChangeTimes->{{3.73429418437888*^9, 3.7342942125798492`*^9}, 
+   3.734294869660274*^9, 3.7342949090986*^9, 3.7344700268154907`*^9, 
+   3.734505352752034*^9, 3.734514380537898*^9, 3.734545536274082*^9, 
+   3.734546023878972*^9, 3.734548597763369*^9, 3.7345605201143913`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"abuts\"\>", ",", "\<\"atone\"\>", ",", "\<\"auger\"\>", 
+   ",", "\<\"baker\"\>", ",", "\<\"boons\"\>", ",", "\<\"brake\"\>", 
+   ",", "\<\"budge\"\>", ",", "\<\"cocks\"\>", ",", "\<\"comic\"\>", 
+   ",", "\<\"dense\"\>", ",", "\<\"depth\"\>", ",", "\<\"fatty\"\>", 
+   ",", "\<\"fecal\"\>", ",", "\<\"flame\"\>", ",", "\<\"fried\"\>", 
+   ",", "\<\"furze\"\>", ",", "\<\"geode\"\>", ",", "\<\"gyros\"\>", 
+   ",", "\<\"heels\"\>", ",", "\<\"hived\"\>", ",", "\<\"hoick\"\>", 
+   ",", "\<\"hurts\"\>", ",", "\<\"jatos\"\>", ",", "\<\"jelly\"\>", 
+   ",", "\<\"jetty\"\>", ",", "\<\"lotto\"\>", ",", "\<\"mails\"\>", 
+   ",", "\<\"midis\"\>", ",", "\<\"miner\"\>", ",", "\<\"noddy\"\>", 
+   ",", "\<\"omits\"\>", ",", "\<\"pacer\"\>", ",", "\<\"pewit\"\>", 
+   ",", "\<\"piste\"\>", ",", "\<\"pukes\"\>", ",", "\<\"quash\"\>", 
+   ",", "\<\"recto\"\>", ",", "\<\"remix\"\>", ",", "\<\"retch\"\>", 
+   ",", "\<\"rooks\"\>", ",", "\<\"samba\"\>", ",", "\<\"serif\"\>", 
+   ",", "\<\"skits\"\>", ",", "\<\"suits\"\>", ",", "\<\"swamp\"\>", 
+   ",", "\<\"tolls\"\>", ",", "\<\"vicar\"\>", ",", "\<\"wilts\"\>", 
+   ",", "\<\"wried\"\>", ",", "\<\"yobbo\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.73429418437888*^9, 3.7342942125798492`*^9}, 
+   3.734294869660274*^9, 3.7342949090986*^9, 3.7344700268154907`*^9, 
+   3.734505352752034*^9, 3.734514380537898*^9, 3.734545536274082*^9, 
+   3.734546023878972*^9, 3.734548597763369*^9, 3.734560520125218*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neighbours", "[", "word_", "]"}], " ", ":=", " ", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", " ", "=", " ", 
+       RowBox[{"Characters", "[", "word", "]"}]}], "}"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{"words5", ",", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"HammingDistance", "[", 
+           RowBox[{"c", ",", " ", 
+            RowBox[{"Characters", "[", "#", "]"}]}], "]"}], " ", "\[Equal]", 
+          " ", "1"}], ")"}], "&"}]}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SetAttributes", "[", 
+  RowBox[{"neighbours", ",", " ", "Listable"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"neighbours", "[", 
+  RowBox[{"{", 
+   RowBox[{
+   "\"\<dance\>\"", ",", " ", "\"\<meats\>\"", ",", " ", "\"\<wonks\>\""}], 
+   "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.734294224071845*^9, 3.734294480692768*^9}, 
+   3.73429454066829*^9, 3.73442311897694*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"dunce\"\>", ",", "\<\"lance\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"beats\"\>", ",", "\<\"feats\"\>", ",", "\<\"heats\"\>", 
+     ",", "\<\"meals\"\>", ",", "\<\"means\"\>", ",", "\<\"meaty\"\>", 
+     ",", "\<\"meets\"\>", ",", "\<\"melts\"\>", ",", "\<\"moats\"\>", 
+     ",", "\<\"seats\"\>", ",", "\<\"teats\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"bonks\"\>", ",", "\<\"conks\"\>", ",", "\<\"honks\"\>", 
+     ",", "\<\"monks\"\>", ",", "\<\"wanks\"\>", ",", "\<\"winks\"\>", 
+     ",", "\<\"wonky\"\>", ",", "\<\"works\"\>", ",", "\<\"yonks\"\>"}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.7342942872421713`*^9, 3.734294310404772*^9}, 
+   3.734294345289556*^9, {3.734294468666027*^9, 3.7342944816103487`*^9}, 
+   3.734294872654087*^9, 3.734423113756941*^9, 3.73447002690683*^9, 
+   3.734505352817855*^9, 3.734514380630539*^9, 3.734546023976873*^9, 
+   3.7345485978480787`*^9, 3.734560520206481*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "The graph for the neighbourhood relationship between the five-letter words \
+can now be constructed to be given to ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " graph functions to solve all kinds of interesting properties of these \
+words and their connections. Since the neighbourhood relation is symmetric, \
+it can be represented using a symmetric edge, and it is sufficient to include \
+the edge to the list of edges only once per each pair of connected words."
+}], "Text",
+ CellChangeTimes->{{3.734294551506124*^9, 3.734294626408779*^9}, {
+  3.734334998806847*^9, 3.734335079214129*^9}, {3.7344231312698183`*^9, 
+  3.734423141028007*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"w5g", " ", "=", " ", 
+   RowBox[{"Graph", "[", 
+    RowBox[{"words5", ",", " ", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Join", "[", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cases", "[", 
+           RowBox[{
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"#", "\[UndirectedEdge]", "n"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"n", ",", " ", 
+                RowBox[{"neighbours", "[", "#", "]"}]}], "}"}]}], "]"}], ",", 
+            
+            RowBox[{
+             RowBox[{"w1_", "\[UndirectedEdge]", "w2_"}], " ", "/;", " ", 
+             RowBox[{
+              RowBox[{"Order", "[", 
+               RowBox[{"w1", ",", "w2"}], "]"}], ">", "0"}]}]}], "]"}], "&"}],
+          ",", " ", "words5"}], "]"}], "]"}], "]"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{
+  3.73429454623064*^9, {3.734294664742244*^9, 3.734294672002941*^9}, {
+   3.7342948893983727`*^9, 3.734294901693446*^9}, 3.734295361899345*^9, {
+   3.734334789439146*^9, 3.734334804667522*^9}, {3.734334836503769*^9, 
+   3.7343349029379873`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell["\<\
+This graph is too big to visualize within the margins of this document, so \
+let us simply zoom into the neighbourhood of one word to get the general idea \
+of what is going on.\
+\>", "Text",
+ CellChangeTimes->{{3.734292932972806*^9, 3.734292939050761*^9}, {
+  3.734294781622829*^9, 3.734294811645702*^9}, {3.7342949177160892`*^9, 
+  3.734294918108089*^9}, {3.7344700536409683`*^9, 3.734470075394136*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NeighborhoodGraph", "[", 
+  RowBox[{"w5g", ",", "\"\<slime\>\"", ",", "1", ",", " ", 
+   RowBox[{"VertexStyle", " ", "\[Rule]", " ", "Red"}], ",", 
+   RowBox[{"VertexLabels", " ", "\[Rule]", " ", "\"\<Name\>\""}], ",", 
+   RowBox[{"VertexLabelStyle", " ", "\[Rule]", " ", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Black", ",", " ", "Bold", ",", " ", "12"}], "]"}]}], ",", " ", 
+   RowBox[{"ImageSize", " ", "\[Rule]", " ", "Medium"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7342948155508747`*^9, 3.734294841534026*^9}, {
+  3.734295010108675*^9, 3.734295017420144*^9}, {3.7342950546438*^9, 
+  3.7342951640572357`*^9}, {3.734295325619445*^9, 3.734295326414523*^9}, {
+  3.7343349829570227`*^9, 3.734334983424704*^9}, {3.7343350816013947`*^9, 
+  3.734335121108926*^9}, {3.734335323321108*^9, 3.734335448065033*^9}, {
+  3.734423150024334*^9, 3.734423159286418*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{"slime", "clime", "slice", "slide", "slims", "slimy"}, {
+      Null, {{2, 1}, {3, 1}, {3, 4}, {4, 1}, {1, 5}, {1, 6}, {5, 6}}}, {
+      ImageSize -> Medium, 
+       VertexCoordinates -> {{8.418717385614517, -10.192134801696838`}, {
+        7.740854827393472, -11.599285555841757`}, {
+        7.520524263680958, -9.503048838981103}, {
+        7.971235181077828, -8.80062677678939}, {
+        9.826804114596879, -10.702870222691534`}, {
+        8.949624278919833, -10.317635580856376`}}, VertexLabels -> {"Name"}, 
+       VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], Bold, 12]}, VertexStyle -> {
+         RGBColor[1, 0, 0]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+        StyleBox[{
+          {Arrowheads[0.], 
+           ArrowBox[{{8.418717385614517, -10.192134801696838`}, {
+            7.740854827393472, -11.599285555841757`}}, 
+            0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{8.418717385614517, -10.192134801696838`}, {
+            7.520524263680958, -9.503048838981103}}, 0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{8.418717385614517, -10.192134801696838`}, {
+            7.971235181077828, -8.80062677678939}}, 0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{8.418717385614517, -10.192134801696838`}, {
+            9.826804114596879, -10.702870222691534`}}, 
+            0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{8.418717385614517, -10.192134801696838`}, {
+            8.949624278919833, -10.317635580856376`}}, 
+            0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{7.520524263680958, -9.503048838981103}, {
+            7.971235181077828, -8.80062677678939}}, 0.02877802512412017]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{9.826804114596879, -10.702870222691534`}, {
+            8.949624278919833, -10.317635580856376`}}, 0.02877802512412017]}},
+         
+         FontFamily->"Verdana"]}, 
+       {RGBColor[1, 0, 0], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+        StyleBox[{{
+           DiskBox[{8.418717385614517, -10.192134801696838`}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"slime\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {8.447495410738638, -10.163356776572718`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{7.740854827393472, -11.599285555841757`}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"clime\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {7.769632852517592, -11.570507530717636`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{7.520524263680958, -9.503048838981103}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"slice\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {7.5493022888050785`, -9.474270813856982}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{7.971235181077828, -8.80062677678939}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"slide\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {8.000013206201949, -8.771848751665269}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{9.826804114596879, -10.702870222691534`}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"slims\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {9.855582139721, -10.674092197567413`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{8.949624278919833, -10.317635580856376`}, 
+            0.02877802512412017], InsetBox[
+            StyleBox["\<\"slimy\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {8.978402304043954, -10.288857555732255`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}},
+         FontFamily->"Verdana"]}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  BaseStyle->{FontFamily -> "Verdana"},
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FrameTicks->None,
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->15,
+  ImageSize->Medium]], "Output",
+ CellChangeTimes->{3.7344231762150173`*^9, 3.734470090956121*^9, 
+  3.734505421001561*^9, 3.734514443535016*^9, 3.734546092879018*^9, 
+  3.7345486577225323`*^9, 3.734560592636916*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "We would expect most of these words to be in a clump in one big connected \
+component, surrounded by some number of smaller components, and a whole a \
+bunch of singleton words that do not have any neighbours. The vertices that \
+make up the connected components are easy enough to find, and the function ",
+ StyleBox["Tally",
+  FontWeight->"Bold"],
+ " can be used to count how many components of the given size there are. \
+There is indeed one big component of 3956 words, a handful of separate \
+smaller components, 101 duopole words connected to each other, and 651 \
+singleton words that have no neighbours at all."
+}], "Text",
+ CellChangeTimes->{{3.734295300654661*^9, 3.734295317765807*^9}, {
+  3.734295724719945*^9, 3.7342957267991056`*^9}, {3.734334219657745*^9, 
+  3.7343342486672707`*^9}, {3.7343343180278177`*^9, 3.734334351159301*^9}, {
+  3.734334433000404*^9, 3.7343345600786667`*^9}, {3.734334653677487*^9, 
+  3.734334658397201*^9}, {3.734335186013287*^9, 3.734335208468471*^9}, {
+  3.734423182116222*^9, 3.734423185339463*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"w5components", " ", "=", " ", 
+   RowBox[{"ConnectedComponents", "[", "w5g", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Tally", "[", 
+  RowBox[{"Map", "[", 
+   RowBox[{"Length", ",", "w5components"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w5clump", " ", "=", " ", 
+   RowBox[{"First", "[", 
+    RowBox[{"Select", "[", 
+     RowBox[{"w5components", ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Length", "[", "#", "]"}], " ", ">", " ", "1000"}], ")"}], 
+       "&"}]}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"singletonWords", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"Select", "[", 
+     RowBox[{"w5components", ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Length", "[", "#", "]"}], " ", "\[Equal]", " ", "1"}], 
+        ")"}], "&"}]}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RandomSample", "[", 
+  RowBox[{"singletonWords", ",", "30"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"duopoles", " ", "=", " ", 
+  RowBox[{"Select", "[", 
+   RowBox[{"w5components", ",", 
+    RowBox[{
+     RowBox[{"(", " ", 
+      RowBox[{
+       RowBox[{"Length", "[", "#", "]"}], "\[Equal]", "2"}], ")"}], "&"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.734334396386383*^9, 3.734334416689246*^9}, {
+  3.7343345696565533`*^9, 3.734334638293538*^9}, {3.7343346697663717`*^9, 
+  3.734334719584621*^9}, {3.734335456288501*^9, 3.734335482024197*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"3956", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"41", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"19", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"13", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"12", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "14"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "32"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "101"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "651"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.734334417426393*^9, {3.734334632156567*^9, 3.734334639292571*^9}, {
+   3.734334707943995*^9, 3.734334715599208*^9}, 3.734335023348814*^9, 
+   3.734335482648244*^9, 3.734470091135911*^9, 3.734505421122035*^9, 
+   3.7345144436773787`*^9, 3.734546093034872*^9, 3.734548657858718*^9, 
+   3.734560592783245*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"julep\"\>", ",", "\<\"mauve\"\>", ",", "\<\"keyed\"\>", 
+   ",", "\<\"hippo\"\>", ",", "\<\"final\"\>", ",", "\<\"gonad\"\>", 
+   ",", "\<\"sushi\"\>", ",", "\<\"beige\"\>", ",", "\<\"human\"\>", 
+   ",", "\<\"semis\"\>", ",", "\<\"freon\"\>", ",", "\<\"theft\"\>", 
+   ",", "\<\"wagon\"\>", ",", "\<\"phlox\"\>", ",", "\<\"saris\"\>", 
+   ",", "\<\"sadhu\"\>", ",", "\<\"kyles\"\>", ",", "\<\"hokum\"\>", 
+   ",", "\<\"panda\"\>", ",", "\<\"ramie\"\>", ",", "\<\"sunup\"\>", 
+   ",", "\<\"doest\"\>", ",", "\<\"lento\"\>", ",", "\<\"durum\"\>", 
+   ",", "\<\"false\"\>", ",", "\<\"sulfa\"\>", ",", "\<\"pique\"\>", 
+   ",", "\<\"pygmy\"\>", ",", "\<\"unzip\"\>", ",", "\<\"sheik\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.734334417426393*^9, {3.734334632156567*^9, 3.734334639292571*^9}, {
+   3.734334707943995*^9, 3.734334715599208*^9}, 3.734335023348814*^9, 
+   3.734335482648244*^9, 3.734470091135911*^9, 3.734505421122035*^9, 
+   3.7345144436773787`*^9, 3.734546093034872*^9, 3.734548657858718*^9, 
+   3.7345605928003798`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"newly\"\>", ",", "\<\"newsy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"image\"\>", ",", "\<\"imago\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"essay\"\>", ",", "\<\"assay\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"abets\"\>", ",", "\<\"abuts\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"motor\"\>", ",", "\<\"rotor\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"piggy\"\>", ",", "\<\"ciggy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"baulk\"\>", ",", "\<\"caulk\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"zetas\"\>", ",", "\<\"betas\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"undid\"\>", ",", "\<\"unbid\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"outgo\"\>", ",", "\<\"outdo\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nevus\"\>", ",", "\<\"nexus\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"maize\"\>", ",", "\<\"baize\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"churl\"\>", ",", "\<\"churn\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wryly\"\>", ",", "\<\"dryly\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"lemma\"\>", ",", "\<\"lemme\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"spume\"\>", ",", "\<\"spumy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"paean\"\>", ",", "\<\"pagan\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"sacra\"\>", ",", "\<\"sabra\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"juicy\"\>", ",", "\<\"juice\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"admen\"\>", ",", "\<\"adman\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"defog\"\>", ",", "\<\"befog\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"algae\"\>", ",", "\<\"algal\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"movie\"\>", ",", "\<\"moxie\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"envoy\"\>", ",", "\<\"enjoy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"camel\"\>", ",", "\<\"cameo\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"deify\"\>", ",", "\<\"deity\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"tuque\"\>", ",", "\<\"toque\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"condo\"\>", ",", "\<\"rondo\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"align\"\>", ",", "\<\"alien\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"twist\"\>", ",", "\<\"twixt\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"rayon\"\>", ",", "\<\"radon\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"korma\"\>", ",", "\<\"karma\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"fluff\"\>", ",", "\<\"bluff\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"angle\"\>", ",", "\<\"ankle\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"daffy\"\>", ",", "\<\"taffy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"aisle\"\>", ",", "\<\"lisle\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"suede\"\>", ",", "\<\"swede\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"unfed\"\>", ",", "\<\"unwed\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"quiff\"\>", ",", "\<\"quaff\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"autos\"\>", ",", "\<\"altos\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"medic\"\>", ",", "\<\"media\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"opium\"\>", ",", "\<\"odium\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"noble\"\>", ",", "\<\"nobly\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"aerie\"\>", ",", "\<\"eerie\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"quash\"\>", ",", "\<\"quasi\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"shyly\"\>", ",", "\<\"slyly\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"kazoo\"\>", ",", "\<\"wazoo\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"annal\"\>", ",", "\<\"annul\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"audit\"\>", ",", "\<\"audio\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"edict\"\>", ",", "\<\"evict\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nylon\"\>", ",", "\<\"pylon\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"motto\"\>", ",", "\<\"lotto\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"abort\"\>", ",", "\<\"about\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ovoid\"\>", ",", "\<\"avoid\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"anons\"\>", ",", "\<\"axons\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"fishy\"\>", ",", "\<\"dishy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"every\"\>", ",", "\<\"emery\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"cobra\"\>", ",", "\<\"copra\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"quoin\"\>", ",", "\<\"quoit\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ulnae\"\>", ",", "\<\"ulnar\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"basso\"\>", ",", "\<\"lasso\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ivied\"\>", ",", "\<\"ivies\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"quaky\"\>", ",", "\<\"quake\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"hydro\"\>", ",", "\<\"hydra\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"reeve\"\>", ",", "\<\"peeve\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nabob\"\>", ",", "\<\"kabob\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"idiot\"\>", ",", "\<\"idiom\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"agent\"\>", ",", "\<\"anent\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"sprog\"\>", ",", "\<\"sprig\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"limit\"\>", ",", "\<\"licit\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"deuce\"\>", ",", "\<\"deice\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"polio\"\>", ",", "\<\"folio\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"rerun\"\>", ",", "\<\"reran\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"chief\"\>", ",", "\<\"thief\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"vireo\"\>", ",", "\<\"video\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ilium\"\>", ",", "\<\"ileum\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"untie\"\>", ",", "\<\"until\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"antsy\"\>", ",", "\<\"artsy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"niece\"\>", ",", "\<\"piece\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"aught\"\>", ",", "\<\"ought\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"cairn\"\>", ",", "\<\"bairn\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"didst\"\>", ",", "\<\"midst\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"usury\"\>", ",", "\<\"usurp\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"admit\"\>", ",", "\<\"admix\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nymph\"\>", ",", "\<\"lymph\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"weigh\"\>", ",", "\<\"neigh\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"tepee\"\>", ",", "\<\"topee\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"alpha\"\>", ",", "\<\"aloha\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"nimby\"\>", ",", "\<\"nimbi\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"juror\"\>", ",", "\<\"furor\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"balsa\"\>", ",", "\<\"salsa\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"remap\"\>", ",", "\<\"recap\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"ideal\"\>", ",", "\<\"ideas\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"blitz\"\>", ",", "\<\"glitz\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"senna\"\>", ",", "\<\"henna\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"novae\"\>", ",", "\<\"novas\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"frizz\"\>", ",", "\<\"fritz\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"waive\"\>", ",", "\<\"naive\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"piton\"\>", ",", "\<\"pinon\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"excel\"\>", ",", "\<\"expel\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"sabot\"\>", ",", "\<\"jabot\"\>"}], "}"}]}], "}"}]], "Output",\
+
+ CellChangeTimes->{
+  3.734334417426393*^9, {3.734334632156567*^9, 3.734334639292571*^9}, {
+   3.734334707943995*^9, 3.734334715599208*^9}, 3.734335023348814*^9, 
+   3.734335482648244*^9, 3.734470091135911*^9, 3.734505421122035*^9, 
+   3.7345144436773787`*^9, 3.734546093034872*^9, 3.734548657858718*^9, 
+   3.734560592814496*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+The most basic structural algorithm on graphs is finding the shortest path \
+from one vertex to another. Of course such a path exists only if the words \
+are inside the same connected component to begin with.\
+\>", "Text",
+ CellChangeTimes->{{3.734295300654661*^9, 3.734295317765807*^9}, {
+  3.734295724719945*^9, 3.7342957267991056`*^9}, {3.734334219657745*^9, 
+  3.7343342486672707`*^9}, {3.7343343180278177`*^9, 3.734334353945037*^9}, {
+  3.734336012373942*^9, 3.734336037238174*^9}, {3.73442320250904*^9, 
+  3.73442320621891*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"FindShortestPath", "[", 
+  RowBox[{"w5g", ",", " ", "\"\<happy\>\"", ",", " ", "\"\<storm\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"FindShortestPath", "[", 
+  RowBox[{"w5g", ",", " ", "\"\<happy\>\"", ",", " ", "\"\<sudsy\>\""}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{
+  3.734295356149466*^9, {3.7342954793029213`*^9, 3.73429550680341*^9}, {
+   3.734335998849638*^9, 3.7343360041116877`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"happy\"\>", ",", "\<\"sappy\"\>", ",", "\<\"soppy\"\>", 
+   ",", "\<\"soapy\"\>", ",", "\<\"soaps\"\>", ",", "\<\"soars\"\>", 
+   ",", "\<\"stars\"\>", ",", "\<\"stare\"\>", ",", "\<\"store\"\>", 
+   ",", "\<\"storm\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.734295507653165*^9, 3.734335026606106*^9, 
+  3.734336004645331*^9, 3.734470091263731*^9, 3.734505421237021*^9, 
+  3.7345144437833433`*^9, 3.734546093112563*^9, 3.7345486579586687`*^9, 
+  3.7345605929166937`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{3.734295507653165*^9, 3.734335026606106*^9, 
+  3.734336004645331*^9, 3.734470091263731*^9, 3.734505421237021*^9, 
+  3.7345144437833433`*^9, 3.734546093112563*^9, 3.7345486579586687`*^9, 
+  3.734560592926325*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "What is the largest ",
+ StyleBox["clique",
+  FontSlant->"Italic"],
+ " of words in this graph so that any two words in this clique are neighbours \
+of each other?"
+}], "Text",
+ CellChangeTimes->{{3.734295577890045*^9, 3.734295625016912*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindClique", "[", "w5g", "]"}]], "Input",
+ CellChangeTimes->{{3.7342955634188433`*^9, 3.7342955696833487`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"\<\"bills\"\>", ",", "\<\"dills\"\>", ",", "\<\"fills\"\>", 
+    ",", "\<\"gills\"\>", ",", "\<\"hills\"\>", ",", "\<\"kills\"\>", 
+    ",", "\<\"mills\"\>", ",", "\<\"pills\"\>", ",", "\<\"rills\"\>", 
+    ",", "\<\"sills\"\>", ",", "\<\"tills\"\>", ",", "\<\"wills\"\>"}], "}"}],
+   "}"}]], "Output",
+ CellChangeTimes->{3.734295570490768*^9, 3.73447009136208*^9, 
+  3.734505421331841*^9, 3.734514443868622*^9, 3.734546093172989*^9, 
+  3.734548658043182*^9, 3.734560593029315*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "A different but equally interesting concept of neighbourhood relation \
+between words is to make two words neighbours if they can be produced from \
+each other by removing or adding one letter somewhere, such as \
+\[OpenCurlyDoubleQuote]cat\[CloseCurlyDoubleQuote] and \
+\[OpenCurlyDoubleQuote]cart\[CloseCurlyDoubleQuote], or \
+\[OpenCurlyDoubleQuote]dog\[CloseCurlyDoubleQuote] and \
+\[OpenCurlyDoubleQuote]doge\[CloseCurlyDoubleQuote].  It will, of course, be \
+much more efficient to find the neighbours of the given word by removing each \
+character and checking whether the result is also a shorter word, than by \
+adding each of the 26 possible characters into each position between the \
+letters and checking whether the result is also a longer word. The function \
+",
+ StyleBox["dropCharacters",
+  FontWeight->"Bold"],
+ " generates the list of strings that can be constructed by removing one \
+character from the given string, using Union to remove the  duplicates \
+produced by duplicated characters in the original word. "
+}], "Text",
+ CellChangeTimes->{{3.734335893841217*^9, 3.734335972135479*^9}, {
+  3.734339245364458*^9, 3.734339383914568*^9}, {3.734339419602162*^9, 
+  3.7343394997456617`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"dropCharacter", "[", 
+     RowBox[{"word_", ",", "pos_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"len", " ", "=", " ", 
+        RowBox[{"StringLength", "[", "word", "]"}]}], "}"}], ",", 
+      RowBox[{"Which", "[", 
+       RowBox[{
+        RowBox[{"pos", " ", "\[Equal]", " ", "1"}], ",", " ", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"word", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"2", ",", "len"}], "}"}]}], "]"}], ",", 
+        RowBox[{"pos", " ", "\[Equal]", " ", "len"}], ",", " ", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"word", ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", 
+            RowBox[{"len", " ", "-", " ", "1"}]}], "}"}]}], "]"}], ",", " ", 
+        "True", ",", " ", 
+        RowBox[{
+         RowBox[{"StringTake", "[", 
+          RowBox[{"word", ",", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", 
+             RowBox[{"pos", "-", "1"}]}], "}"}]}], "]"}], "<>", 
+         RowBox[{"StringTake", "[", 
+          RowBox[{"word", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"pos", "+", "1"}], ",", "len"}], "}"}]}], "]"}]}]}], 
+       "]"}]}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dropCharacters", "[", "word_", "]"}], " ", ":=", 
+   RowBox[{"Union", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"dropCharacter", "[", 
+       RowBox[{"word", ",", "i"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", " ", 
+        RowBox[{"StringLength", "[", "word", "]"}]}], "}"}]}], "]"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{"dropCharacters", "[", "\"\<mellow\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.7343384473055983`*^9, 3.734338473600503*^9}, {
+  3.7343385980408497`*^9, 3.7343386765414953`*^9}, {3.73433873119755*^9, 
+  3.7343387449030037`*^9}, {3.734338796333672*^9, 3.7343389470730247`*^9}, {
+  3.734338978899251*^9, 3.7343390037042913`*^9}, {3.734339079593012*^9, 
+  3.73433911051121*^9}, {3.734339143856168*^9, 3.734339242536813*^9}, {
+  3.734339387075499*^9, 3.7343394162444*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"ellow\"\>", ",", "\<\"mello\"\>", ",", "\<\"mellw\"\>", 
+   ",", "\<\"melow\"\>", ",", "\<\"mllow\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7343393926028137`*^9, 3.734339416961903*^9}, 
+   3.7344700914616547`*^9, 3.734505421419976*^9, 3.734514443952018*^9, 
+   3.7345460932211037`*^9, 3.734548658128277*^9, 3.734560593133917*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+Since the wordlist is known to be in sorted order, we can quickly determine \
+if some string is a word by using binary search. \
+\>", "Text",
+ CellChangeTimes->{{3.734339502352871*^9, 3.7343395190408983`*^9}, {
+  3.734340337581277*^9, 3.734340356900264*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"binarySearch", "[", 
+    RowBox[{"words_", ",", " ", "w_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+       RowBox[{"j", " ", "=", " ", 
+        RowBox[{"Length", "[", "words", "]"}]}], ",", " ", "mid"}], "}"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{"i", " ", "<", " ", "j"}], ",", " ", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"mid", " ", "=", " ", 
+          RowBox[{"Floor", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"i", "+", "j"}], ")"}], "/", "2"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Order", "[", 
+             RowBox[{
+              RowBox[{"words", "[", 
+               RowBox[{"[", "mid", "]"}], "]"}], ",", " ", "w"}], "]"}], " ", 
+            "\[Equal]", " ", "1"}], ",", " ", 
+           RowBox[{"i", " ", "=", " ", 
+            RowBox[{"mid", " ", "+", " ", "1"}]}], ",", "  ", 
+           RowBox[{"j", " ", "=", " ", "mid"}]}], "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"words", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], " ", "\[Equal]", " ", "w"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"binarySearch", "[", 
+  RowBox[{"englishWords", ",", " ", "\"\<independence\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"binarySearch", "[", 
+  RowBox[{"englishWords", ",", " ", "\"\<imdependence\>\""}], "]"}]}], "Input",\
+
+ CellChangeTimes->{{3.734340272758852*^9, 3.73434032933119*^9}, {
+  3.7343403668855057`*^9, 3.734340400527421*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.734340384144885*^9, 3.734340401077228*^9}, 
+   3.734470091562175*^9, 3.7345054215049477`*^9, 3.734514444035026*^9, 
+   3.7345460932745657`*^9, 3.734548658211586*^9, 3.73456059323624*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{{3.734340384144885*^9, 3.734340401077228*^9}, 
+   3.734470091562175*^9, 3.7345054215049477`*^9, 3.734514444035026*^9, 
+   3.7345460932745657`*^9, 3.734548658211586*^9, 3.7345605932446737`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell["\<\
+The graph for the neighbourhood relationship can now be constructed with the \
+aid of a utility function that generates all the neighbours shorter than the \
+given word. Since the edges of the graph are undirected, it is sufficient to \
+add each edge only one way.\
+\>", "Text",
+ CellChangeTimes->{{3.7343404257716303`*^9, 3.734340451762229*^9}, {
+  3.734341490955916*^9, 3.7343415486303453`*^9}, {3.7343420137424803`*^9, 
+  3.7343420721261683`*^9}, {3.734422545310669*^9, 3.734422572923978*^9}, {
+  3.734422660474444*^9, 3.734422663618239*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neighbours", "[", "word_", "]"}], " ", ":=", " ", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"word", " ", "\[UndirectedEdge]", "#"}], ")"}], "&"}], ",", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"dropCharacters", "[", "word", "]"}], ",", " ", 
+       RowBox[{
+        RowBox[{"binarySearch", "[", 
+         RowBox[{"englishWords", ",", " ", "#"}], "]"}], "&"}]}], "]"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"neighbours", "[", "\"\<doge\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.73434046006007*^9, 3.734340598009397*^9}, {
+   3.7343407717120657`*^9, 3.734340787079472*^9}, {3.734341035315917*^9, 
+   3.734341038643386*^9}, {3.734341784596908*^9, 3.734341787000099*^9}, {
+   3.734342006468953*^9, 3.734342008025711*^9}, 3.734342593638439*^9, {
+   3.734422514035177*^9, 3.734422518471333*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"doge\"\>", "\[UndirectedEdge]", "\<\"doe\"\>"}], ",", 
+   RowBox[{"\<\"doge\"\>", "\[UndirectedEdge]", "\<\"dog\"\>"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.734340506740893*^9, 3.734340519790332*^9}, 
+   3.734340569962804*^9, 3.7343406013702297`*^9, 3.734340787894271*^9, 
+   3.734341039365514*^9, 3.7343417901651917`*^9, 3.734342034491004*^9, 
+   3.734422576992948*^9, 3.734470091662991*^9, 3.734505421588501*^9, 
+   3.734514444119174*^9, 3.734546093334313*^9, 3.734548658295417*^9, 
+   3.734560593343524*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dropGraph", " ", "=", " ", 
+   RowBox[{"Graph", "[", 
+    RowBox[{"englishWords", ",", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Select", "[", 
+       RowBox[{
+        RowBox[{"Map", "[", 
+         RowBox[{"neighbours", ",", " ", "englishWords"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Length", "[", "#", "]"}], ">", "0"}], ")"}], "&"}]}], 
+       "]"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"NeighborhoodGraph", "[", 
+  RowBox[{"dropGraph", ",", " ", "\"\<slate\>\"", ",", "1", ",", " ", 
+   RowBox[{"VertexStyle", " ", "\[Rule]", " ", "White"}], ",", 
+   RowBox[{"VertexLabels", " ", "\[Rule]", " ", "\"\<Name\>\""}], ",", 
+   RowBox[{"VertexLabelStyle", " ", "\[Rule]", " ", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Black", ",", " ", "Bold", ",", " ", "12"}], "]"}]}], ",", " ", 
+   RowBox[{"ImageSize", " ", "\[Rule]", " ", "Medium"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7343406999522676`*^9, 3.7343407441189203`*^9}, {
+  3.7343411582893457`*^9, 3.73434119860988*^9}, {3.734341521419088*^9, 
+  3.7343415345662727`*^9}, {3.734342079730569*^9, 3.73434207991391*^9}, {
+  3.734342595631466*^9, 3.7343425959936123`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{"slate", "late", "sate", "slat", "slated", "slates"}, {
+      Null, {{1, 2}, {1, 3}, {1, 4}, {5, 1}, {6, 1}}}, {
+      ImageSize -> Medium, 
+       VertexCoordinates -> {{17.412604696316496`, -29.146105768441025`}, {
+        18.499836844468263`, -30.113688349590355`}, {
+        16.557976072513213`, -28.213723736366212`}, {
+        17.05386885253823, -27.924813990410172`}, {
+        17.358166304284932`, -30.088567252957546`}, {
+        17.11912055623368, -29.187252612547127`}}, VertexLabels -> {"Name"}, 
+       VertexLabelStyle -> {
+         Directive[
+          GrayLevel[0], Bold, 12]}, VertexStyle -> {
+         GrayLevel[1]}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+        StyleBox[{
+          {Arrowheads[0.], 
+           ArrowBox[{{17.412604696316496`, -29.146105768441025`}, {
+            18.499836844468263`, -30.113688349590355`}}, 
+            0.02412575901926925]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{17.412604696316496`, -29.146105768441025`}, {
+            16.557976072513213`, -28.213723736366212`}}, 
+            0.02412575901926925]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{17.412604696316496`, -29.146105768441025`}, {
+            17.05386885253823, -27.924813990410172`}}, 
+            0.02412575901926925]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{17.412604696316496`, -29.146105768441025`}, {
+            17.358166304284932`, -30.088567252957546`}}, 
+            0.02412575901926925]}, 
+          {Arrowheads[0.], 
+           ArrowBox[{{17.412604696316496`, -29.146105768441025`}, {
+            17.11912055623368, -29.187252612547127`}}, 0.02412575901926925]}},
+         
+         FontFamily->"Verdana"]}, 
+       {GrayLevel[1], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
+        StyleBox[{{
+           DiskBox[{17.412604696316496`, -29.146105768441025`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"slate\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {17.436730455335766`, -29.121980009421755`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{18.499836844468263`, -30.113688349590355`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"late\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {18.523962603487533`, -30.089562590571084`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{16.557976072513213`, -28.213723736366212`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"sate\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {16.582101831532484`, -28.189597977346942`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{17.05386885253823, -27.924813990410172`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"slat\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {17.0779946115575, -27.9006882313909}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{17.358166304284932`, -30.088567252957546`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"slated\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {17.382292063304202`, -30.064441493938276`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}, {
+           DiskBox[{17.11912055623368, -29.187252612547127`}, 
+            0.02412575901926925], InsetBox[
+            StyleBox["\<\"slates\"\>",
+             StripOnInput->False,
+             LineColor->GrayLevel[0],
+             FrontFaceColor->GrayLevel[0],
+             BackFaceColor->GrayLevel[0],
+             GraphicsColor->GrayLevel[0],
+             FontSize->12,
+             FontWeight->Bold,
+             FontColor->GrayLevel[0]], 
+            Offset[{2, 2}, {17.14324631525295, -29.163126853527856`}], 
+            ImageScaled[{0, 0}],
+            BaseStyle->"Graphics"]}},
+         FontFamily->"Verdana"]}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  BaseStyle->{FontFamily -> "Verdana"},
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FrameTicks->None,
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->15,
+  ImageSize->Medium]], "Output",
+ CellChangeTimes->{
+  3.73434074562258*^9, 3.73434096133502*^9, 3.734341128657325*^9, {
+   3.734341161585516*^9, 3.734341199222127*^9}, {3.73434152214579*^9, 
+   3.734341535100699*^9}, 3.734341876008566*^9, 3.734342128501889*^9, 
+   3.734422733386231*^9, 3.7344701739024677`*^9, 3.7345055035029793`*^9, 
+   3.7345145219180403`*^9, 3.734546183706849*^9, 3.734548741105145*^9, 
+   3.7345606812880363`*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "Are there any nine-letter words from which it is possible to get to the \
+single-letter word \[OpenCurlyDoubleQuote]a\[CloseCurlyDoubleQuote]? Yes, in \
+fact there are several such words, and most likely several possible paths for \
+each one. However, because the paths for different starting words will \
+massively overlap and we want to construct only one such path for each \
+starting word, we can find all such words and construct their paths up to the \
+particular length in a ",
+ StyleBox["bottom-up",
+  FontSlant->"Italic"],
+ " ",
+ StyleBox["dynamic programming",
+  FontSlant->"Italic"],
+ " fashion by building up the paths for the words of length ",
+ StyleBox["i",
+  FontSlant->"Italic"],
+ " based on the known paths for the words of length ",
+ StyleBox["i",
+  FontSlant->"Italic"],
+ " - 1.\nIn the function ",
+ StyleBox["findPaths ",
+  FontWeight->"Bold"],
+ "that generates the paths from all the words of the length ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ ", the local names ",
+ StyleBox["prev",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["curr",
+  FontWeight->"Bold"],
+ " refer to the word-path associations for the words of the previous and \
+current level, respectively. Same was as in all bottom-up dynamic programming \
+algorithms, the association ",
+ StyleBox["prev",
+  FontWeight->"Bold"],
+ " has effectively memoized the solutions for the lower lengths so that we \
+don\[CloseCurlyQuote]t have to construct these paths again from scratch."
+}], "Text",
+ CellChangeTimes->{{3.734342175764518*^9, 3.734342188644952*^9}, {
+  3.734342544032235*^9, 3.7343426191099987`*^9}, {3.734342691428606*^9, 
+  3.73434269396402*^9}, {3.734342751186535*^9, 3.7343427517067747`*^9}, {
+  3.734342812235997*^9, 3.734342832690572*^9}, {3.734420626245028*^9, 
+  3.7344206556188498`*^9}, {3.734420726986155*^9, 3.734420739200531*^9}, {
+  3.734420916301814*^9, 3.734420961405249*^9}, {3.734421835121838*^9, 
+  3.734421890383713*^9}, {3.734422001296599*^9, 3.734422033869629*^9}, {
+  3.734422071291665*^9, 3.734422137323456*^9}, {3.734422361850163*^9, 
+  3.734422507621358*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"findPaths", "[", 
+     RowBox[{"words_", ",", " ", "n_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "prev", ",", " ", "curr", ",", " ", "currWords", ",", " ", "prewWords",
+         ",", " ", "cw", ",", " ", "pred"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"prev", " ", "=", " ", 
+        RowBox[{"Association", "[", 
+         RowBox[{"\"\<a\>\"", " ", "\[Rule]", " ", 
+          RowBox[{"{", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"curr", " ", "=", " ", "prev"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"currWords", " ", "=", " ", 
+           RowBox[{"Select", "[", 
+            RowBox[{"words", ",", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"StringLength", "[", "#", "]"}], " ", "\[Equal]", " ",
+                 "i"}], ")"}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"prevWords", " ", "=", " ", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"Keys", "[", "prev", "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"curr", " ", "=", " ", 
+           RowBox[{"Association", "[", 
+            RowBox[{"{", "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Do", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"cw", " ", "=", " ", 
+              RowBox[{"currWords", "[", 
+               RowBox[{"[", "j", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"pred", " ", "=", " ", 
+              RowBox[{"Select", "[", 
+               RowBox[{
+                RowBox[{"dropCharacters", "[", "cw", "]"}], ",", " ", 
+                RowBox[{
+                 RowBox[{"binarySearch", "[", 
+                  RowBox[{"prevWords", ",", " ", "#"}], "]"}], "&"}]}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "pred", "]"}], " ", ">", " ", "0"}], 
+               ",", "\[IndentingNewLine]", " ", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"curr", "[", "cw", "]"}], " ", "=", " ", 
+                 RowBox[{"Join", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"First", "[", "pred", "]"}], "}"}], ",", 
+                   RowBox[{"prev", "[", 
+                    RowBox[{"First", "[", "pred", "]"}], "]"}]}], "]"}]}], 
+                ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], 
+            "\[IndentingNewLine]", ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", "1", ",", 
+              RowBox[{"Length", "[", "currWords", "]"}]}], "}"}]}], "]"}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"prev", " ", "=", " ", "curr"}], ";"}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "2", ",", "n"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "curr"}]}], "\[IndentingNewLine]", "]"}]}], 
+   ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.7344198742539673`*^9, 3.734419969638036*^9}, {
+  3.734420005302268*^9, 3.734420180787414*^9}, {3.734420221451521*^9, 
+  3.734420607262401*^9}, {3.73442066645907*^9, 3.7344206765341587`*^9}, {
+  3.734420710374161*^9, 3.7344207193792553`*^9}, {3.734420778563876*^9, 
+  3.734420871256075*^9}, {3.7344211712298098`*^9, 3.734421174570608*^9}, {
+  3.734421375778953*^9, 3.7344214362631817`*^9}, {3.734421473143526*^9, 
+  3.7344214882919693`*^9}, {3.734421561920227*^9, 3.734421676269823*^9}, {
+  3.734421710460475*^9, 3.734421715966549*^9}, {3.734421754711871*^9, 
+  3.734421827469878*^9}, {3.7344219389277782`*^9, 3.7344219922978487`*^9}, {
+  3.734422153281749*^9, 3.7344221586633987`*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell["\<\
+This function can now reveal that there are exactly ten words of nine letters \
+from which it is possible to reach the letter a by repeated removal of \
+individual characters.\
+\>", "Text",
+ CellChangeTimes->{{3.734422184411021*^9, 3.7344222689131536`*^9}, {
+  3.734422313551948*^9, 3.7344223182563*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"time", ",", " ", "pathWords9"}], "}"}], " ", "=", " ", 
+   RowBox[{"Timing", "[", 
+    RowBox[{"findPaths", "[", 
+     RowBox[{"englishWords", ",", "9"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", "time", "\[IndentingNewLine]", 
+ RowBox[{"TableForm", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"Join", "[", 
+     RowBox[{
+      RowBox[{"{", "word", "}"}], ",", " ", 
+      RowBox[{"pathWords9", "[", "word", "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"word", ",", " ", 
+      RowBox[{"Keys", "[", "pathWords9", "]"}]}], "}"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.734341573335465*^9, 3.734341578152896*^9}, {
+  3.734341633006585*^9, 3.734341752509953*^9}, {3.734341935914365*^9, 
+  3.734341969728895*^9}, {3.734342093214675*^9, 3.7343420932779913`*^9}, {
+  3.734342141526861*^9, 3.7343421734767227`*^9}, {3.734342231421155*^9, 
+  3.734342381977366*^9}, {3.7343424279304123`*^9, 3.7343424368490677`*^9}, {
+  3.734342531416788*^9, 3.73434253469631*^9}, {3.734342628231598*^9, 
+  3.734342640879669*^9}, {3.734342714925477*^9, 3.73434274808633*^9}, {
+  3.734342792405471*^9, 3.734342798267362*^9}, {3.734420421936206*^9, 
+  3.734420424942766*^9}, {3.734421178010317*^9, 3.734421208923452*^9}, {
+  3.734421246930233*^9, 3.734421276001472*^9}, {3.7344213183987617`*^9, 
+  3.7344213402594833`*^9}, {3.734422164030114*^9, 3.7344222083561087`*^9}, {
+  3.734422983488946*^9, 3.734422983873756*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData["25.06646900000000144359546538908034563065`7.419693074448903"], \
+"Output",
+ CellChangeTimes->{
+  3.734342433535763*^9, 3.734342473267439*^9, 3.734342621500304*^9, 
+   3.734342685608399*^9, 3.734342840776126*^9, {3.734421192653426*^9, 
+   3.7344212098720407`*^9}, {3.7344212520713654`*^9, 
+   3.7344212767309113`*^9}, {3.734421331342942*^9, 3.734421340971837*^9}, 
+   3.73442229839911*^9, 3.734470198326005*^9, 3.734505528498889*^9, 
+   3.734514544554509*^9, 3.734546210945513*^9, 3.734548767816938*^9, 
+   3.734560706907296*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"cleansers\"\>", "\<\"cleanser\"\>", "\<\"cleanse\"\>", \
+"\<\"cleans\"\>", "\<\"clans\"\>", "\<\"cans\"\>", "\<\"ans\"\>", \
+"\<\"an\"\>", "\<\"a\"\>"},
+    {"\<\"prattlers\"\>", "\<\"prattler\"\>", "\<\"rattler\"\>", \
+"\<\"ratter\"\>", "\<\"rater\"\>", "\<\"rate\"\>", "\<\"ate\"\>", \
+"\<\"at\"\>", "\<\"a\"\>"},
+    {"\<\"restarted\"\>", "\<\"restated\"\>", "\<\"restate\"\>", \
+"\<\"estate\"\>", "\<\"state\"\>", "\<\"sate\"\>", "\<\"ate\"\>", \
+"\<\"at\"\>", "\<\"a\"\>"},
+    {"\<\"roadsters\"\>", "\<\"roadster\"\>", "\<\"roaster\"\>", \
+"\<\"raster\"\>", "\<\"rater\"\>", "\<\"rate\"\>", "\<\"ate\"\>", \
+"\<\"at\"\>", "\<\"a\"\>"},
+    {"\<\"splatters\"\>", "\<\"platters\"\>", "\<\"patters\"\>", \
+"\<\"paters\"\>", "\<\"pater\"\>", "\<\"pate\"\>", "\<\"ate\"\>", \
+"\<\"at\"\>", "\<\"a\"\>"},
+    {"\<\"stampeded\"\>", "\<\"stampede\"\>", "\<\"stamped\"\>", \
+"\<\"tamped\"\>", "\<\"tamed\"\>", "\<\"tame\"\>", "\<\"tam\"\>", \
+"\<\"am\"\>", "\<\"a\"\>"},
+    {"\<\"stampedes\"\>", "\<\"stampede\"\>", "\<\"stamped\"\>", \
+"\<\"tamped\"\>", "\<\"tamed\"\>", "\<\"tame\"\>", "\<\"tam\"\>", \
+"\<\"am\"\>", "\<\"a\"\>"},
+    {"\<\"threaders\"\>", "\<\"threader\"\>", "\<\"treader\"\>", \
+"\<\"trader\"\>", "\<\"trade\"\>", "\<\"trad\"\>", "\<\"tad\"\>", \
+"\<\"ad\"\>", "\<\"a\"\>"},
+    {"\<\"threadier\"\>", "\<\"threader\"\>", "\<\"treader\"\>", \
+"\<\"trader\"\>", "\<\"trade\"\>", "\<\"trad\"\>", "\<\"tad\"\>", \
+"\<\"ad\"\>", "\<\"a\"\>"},
+    {"\<\"tramplers\"\>", "\<\"trampers\"\>", "\<\"tampers\"\>", \
+"\<\"tamers\"\>", "\<\"tamer\"\>", "\<\"tame\"\>", "\<\"tam\"\>", \
+"\<\"am\"\>", "\<\"a\"\>"}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.734342433535763*^9, 3.734342473267439*^9, 3.734342621500304*^9, 
+   3.734342685608399*^9, 3.734342840776126*^9, {3.734421192653426*^9, 
+   3.7344212098720407`*^9}, {3.7344212520713654`*^9, 
+   3.7344212767309113`*^9}, {3.734421331342942*^9, 3.734421340971837*^9}, 
+   3.73442229839911*^9, 3.734470198326005*^9, 3.734505528498889*^9, 
+   3.734514544554509*^9, 3.734546210945513*^9, 3.734548767816938*^9, 
+   3.734560706949576*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]],
+
+Cell[TextData[{
+ "To solve another curious bunch of word problems, the set of words is first \
+converted to a propositional logic formula that can be used to check whether \
+a given sequence is a word. Again, inspired by the work of Donald Knuth in \
+Volume Four, we look at the set of five-letter words. The formula for the \
+five positions inside the word so that each position must have exactly one of \
+the 26 possible lowercase characters produces 130 propositional logic symbols \
+in a brute force fashion. The words themselves are easiest to construct in ",
+ StyleBox["disjunctive normal form ",
+  FontSlant->"Italic"],
+ "so that each word becomes a single conjunctive clause saying that each \
+character must be precisely that character in that position of that word. \
+Furthermore, we need a set of implications to say that if there is a \
+character in the position of a word, then there can\[CloseCurlyQuote]t be any \
+other character in that same position."
+}], "Text",
+ CellChangeTimes->{{3.734423028118181*^9, 3.734423089139987*^9}, {
+  3.73442525342925*^9, 3.734425305144473*^9}, {3.7344253399528017`*^9, 
+  3.734425341029718*^9}, {3.734425433165506*^9, 3.7344254869410763`*^9}, {
+  3.7344255298853693`*^9, 3.734425581692172*^9}, {3.734425639011011*^9, 
+  3.7344257276744013`*^9}, {3.734426555836793*^9, 3.734426591211832*^9}, {
+  3.7344702239237757`*^9, 3.734470226770544*^9}, {3.734547208597452*^9, 
+  3.734547210304872*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"sym", "[", 
+    RowBox[{"s_", ",", "c_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Subscript", "[", 
+    RowBox[{"s", ",", "c"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bs", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"x1", ",", "x2", ",", "x3", ",", "x4", ",", " ", "x5"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"allWordFormulas", "[", 
+    RowBox[{
+     RowBox[{"words_", " ", "/;", " ", 
+      RowBox[{
+       RowBox[{"Length", "[", "words", "]"}], " ", "<", " ", "5"}]}], " ", 
+     ",", " ", "symbols_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Or", " ", "@@", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"And", " ", "@@", " ", 
+       RowBox[{"Thread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"sym", "[", 
+            RowBox[{"#1", ",", "#2"}], "]"}], ")"}], "&"}], "[", 
+         RowBox[{"symbols", ",", " ", 
+          RowBox[{"Characters", "[", "word", "]"}]}], "]"}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"word", ",", " ", "words"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"allWordFormulas", "[", 
+    RowBox[{"words_", ",", "symbols_"}], "]"}], " ", ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mid", " ", "=", " ", 
+       RowBox[{"Floor", "[", 
+        RowBox[{
+         RowBox[{"Length", "[", "words", "]"}], "/", "2"}], "]"}]}], "}"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"Or", "[", 
+      RowBox[{
+       RowBox[{"allWordFormulas", "[", 
+        RowBox[{
+         RowBox[{"words", "[", 
+          RowBox[{"[", 
+           RowBox[{"1", ";;", "mid"}], "]"}], "]"}], ",", " ", "symbols"}], 
+        "]"}], ",", " ", 
+       RowBox[{"allWordFormulas", "[", 
+        RowBox[{
+         RowBox[{"words", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"mid", "+", "1"}], " ", ";;", " ", 
+            RowBox[{"Length", "[", "words", "]"}]}], "]"}], "]"}], ",", 
+         "symbols"}], "]"}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"oneCharOnly", "[", 
+    RowBox[{"symbols_", ",", " ", "characters_"}], "]"}], " ", ":=", 
+   RowBox[{"And", " ", "@@", " ", 
+    RowBox[{"Flatten", "[", " ", 
+     RowBox[{"Table", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Implies", "[", 
+        RowBox[{
+         RowBox[{"sym", "[", 
+          RowBox[{"s", ",", 
+           RowBox[{"characters", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], "]"}], " ", ",", " ", 
+         RowBox[{"Not", "[", 
+          RowBox[{"sym", "[", 
+           RowBox[{"s", ",", 
+            RowBox[{"characters", "[", 
+             RowBox[{"[", "j", "]"}], "]"}]}], "]"}], "]"}]}], "]"}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", " ", 
+         RowBox[{
+          RowBox[{"Length", "[", "characters", "]"}], "-", "1"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", 
+         RowBox[{"i", "+", "1"}], ",", 
+         RowBox[{"Length", "[", "characters", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"s", ",", " ", "symbols"}], "}"}]}], "]"}], "]"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"wordFormulas", "[", 
+    RowBox[{"words_", ",", "symbols_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"And", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"allWordFormulas", "[", 
+      RowBox[{"words", ",", " ", "symbols"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"oneCharOnly", "[", 
+      RowBox[{"symbols", ",", 
+       RowBox[{"CharacterRange", "[", 
+        RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"logic5", " ", "=", 
+   RowBox[{"wordFormulas", "[", 
+    RowBox[{
+     RowBox[{"Take", "[", 
+      RowBox[{"words5", ",", "All"}], "]"}], ",", " ", "bs"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.73442325380435*^9, 3.734423474978425*^9}, {
+   3.7344235056961317`*^9, 3.7344235346780024`*^9}, {3.7344235850304747`*^9, 
+   3.7344236120938263`*^9}, {3.734423646004497*^9, 3.734424355106185*^9}, {
+   3.734424409113288*^9, 3.734424409742153*^9}, {3.734424444137382*^9, 
+   3.7344245223347883`*^9}, {3.734424557744013*^9, 3.734424700276702*^9}, {
+   3.7344247494368563`*^9, 3.734424957240155*^9}, {3.734424988992414*^9, 
+   3.7344250245186443`*^9}, {3.734425077431548*^9, 3.734425127885198*^9}, 
+   3.7344257411656933`*^9, {3.734425995087964*^9, 3.73442599998589*^9}, {
+   3.734426457512794*^9, 3.734426466529611*^9}, {3.7344265117513227`*^9, 
+   3.734426523566155*^9}, {3.734426681367564*^9, 3.734426692330413*^9}, {
+   3.734427046725795*^9, 3.734427055709874*^9}, {3.7344287777892838`*^9, 
+   3.734428781674592*^9}, {3.7344290971838913`*^9, 3.734429103055149*^9}, {
+   3.734429345524704*^9, 3.7344293583848543`*^9}, {3.734429922970055*^9, 
+   3.7344299447024183`*^9}, {3.73446975726502*^9, 3.7344698594222317`*^9}, {
+   3.7344699115496683`*^9, 3.734469969427348*^9}, {3.73447025205404*^9, 
+   3.734470263994631*^9}, {3.734470320631013*^9, 3.734470422580381*^9}, {
+   3.734470498659004*^9, 3.73447064795327*^9}, {3.734470687835709*^9, 
+   3.73447076029463*^9}, {3.734505220777342*^9, 3.7345052236499367`*^9}, {
+   3.7345052904741173`*^9, 3.7345053080997143`*^9}, {3.734505655004739*^9, 
+   3.7345056573630342`*^9}, {3.734505707396277*^9, 3.734505734384974*^9}, {
+   3.734505787740547*^9, 3.734505846056086*^9}, {3.734505902585209*^9, 
+   3.734505926734907*^9}, {3.734505971433013*^9, 3.734506040476961*^9}, {
+   3.734506071174121*^9, 3.734506072501315*^9}, {3.7345064695989323`*^9, 
+   3.734506603612074*^9}, {3.734506732445958*^9, 3.734506831044828*^9}, {
+   3.734506871480007*^9, 3.7345069091083*^9}, {3.734506953811037*^9, 
+   3.7345070539745626`*^9}, {3.7345071200170403`*^9, 
+   3.7345071203658743`*^9}, {3.7345071581292353`*^9, 
+   3.7345071886617937`*^9}, {3.734507228222363*^9, 3.734507234628631*^9}, {
+   3.73450733030905*^9, 3.734507407513206*^9}, {3.7345074871786823`*^9, 
+   3.7345075001069117`*^9}, 3.734526702787239*^9, {3.734526777217464*^9, 
+   3.73452682703894*^9}, {3.734543942034195*^9, 3.7345439669331913`*^9}, {
+   3.7345443065540333`*^9, 3.7345446420523987`*^9}, {3.734544747434167*^9, 
+   3.734544781138412*^9}, {3.7345448189690113`*^9, 3.734544955421088*^9}, {
+   3.734545026581582*^9, 3.7345450477711887`*^9}, {3.734545402546543*^9, 
+   3.7345454614786453`*^9}, {3.734545514320095*^9, 3.734545514493688*^9}, {
+   3.734545589151733*^9, 3.7345455953494177`*^9}, {3.7345463665418177`*^9, 
+   3.734546367328402*^9}, {3.7345464010913887`*^9, 3.734546440343314*^9}, {
+   3.7345466157254553`*^9, 3.734546631390922*^9}, {3.7345467641694717`*^9, 
+   3.7345468699796133`*^9}, {3.734547632349886*^9, 3.7345476610422153`*^9}, {
+   3.734548207677783*^9, 3.734548277105282*^9}, 3.734548321322804*^9, {
+   3.734548360572938*^9, 3.734548371430827*^9}, {3.734548429526157*^9, 
+   3.734548429971442*^9}, {3.734549106295727*^9, 3.7345491566053257`*^9}, {
+   3.734549294228018*^9, 3.734549305282143*^9}, {3.7345494333548317`*^9, 
+   3.734549455047714*^9}, {3.7345494880109158`*^9, 3.734549503126566*^9}, {
+   3.734556247197132*^9, 3.734556264038052*^9}, {3.734556440938637*^9, 
+   3.734556441299889*^9}, {3.734556569432102*^9, 3.7345566048961477`*^9}, {
+   3.734557080274486*^9, 3.7345571477766457`*^9}, {3.7345584488702927`*^9, 
+   3.734558453849205*^9}, {3.734559935917226*^9, 3.7345600282888613`*^9}, {
+   3.734560112161545*^9, 3.734560128911858*^9}, {3.734560223127911*^9, 
+   3.734560236631261*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell["\<\
+Once the set of words has been converted to an equivalent propositional logic \
+formula, that formula can be used to enumerate the words that fit the given \
+logical query. For example, we can find all words that start with the letter \
+\[OpenCurlyQuote]a\[CloseCurlyQuote] and also have the letter \
+\[OpenCurlyQuote]x\[CloseCurlyQuote] somewhere in them. Looks like there are \
+nine of those in the entire wordlist. This is not really anywhere the fastest \
+way to solve this problem, which goes to illustrate the fact that the \
+specialized algorithms can utilize the background information that is \
+difficult to provide to a satifiability solver in form of propositional logic \
+clauses. This is why us humans will still need to write the programs for the \
+computer to execute, instead of simply feeding the entire problem to the \
+satisfiability solver and letting that one do all the work.\
+\>", "Text",
+ CellChangeTimes->{{3.7344258088088713`*^9, 3.734425864703875*^9}, {
+  3.7344260517174788`*^9, 3.7344260518277884`*^9}, {3.734426113387101*^9, 
+  3.734426113482834*^9}, {3.734426299249102*^9, 3.7344263232643127`*^9}, {
+  3.73447077902125*^9, 3.734470779867399*^9}, {3.734549075758966*^9, 
+  3.734549090276264*^9}, {3.7345598762190647`*^9, 3.734559928345793*^9}, {
+  3.734560244189186*^9, 3.73456024750765*^9}, {3.734560820677413*^9, 
+  3.734560868033506*^9}, {3.7345613216782427`*^9, 3.734561333754862*^9}, {
+  3.734561467397808*^9, 3.734561467504675*^9}},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vars", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"sym", "[", 
+       RowBox[{"s", ",", "c"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"s", ",", "bs"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", " ", 
+        RowBox[{"CharacterRange", "[", 
+         RowBox[{"\"\<a\>\"", ",", "\"\<z\>\""}], "]"}]}], "}"}]}], "]"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"reconstructWord", "[", 
+    RowBox[{"vars_", ",", "values_"}], "]"}], " ", ":=", "   ", 
+   RowBox[{"StringJoin", " ", "@@", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ToString", "[", 
+        RowBox[{"First", "[", "#", "]"}], "]"}], "&"}], ",", 
+      RowBox[{
+       RowBox[{"Select", "[", 
+        RowBox[{
+         RowBox[{"Thread", "[", 
+          RowBox[{"{", 
+           RowBox[{"vars", ",", " ", "values"}], "}"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ")"}], "&"}]}], "]"}], " ", "/.", 
+       " ", 
+       RowBox[{
+        RowBox[{"Subscript", "[", 
+         RowBox[{"s_", ",", "c_"}], "]"}], " ", "\[Rule]", " ", "c"}]}]}], 
+     "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"findWords", "[", 
+    RowBox[{"query_", ",", " ", "vars_"}], "]"}], " ", ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"reconstructWord", "[", 
+      RowBox[{"vars", ",", " ", "sol"}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"sol", ",", " ", 
+       RowBox[{"SatisfiabilityInstances", "[", 
+        RowBox[{
+         RowBox[{"And", "[", 
+          RowBox[{"query", ",", "logic5"}], "]"}], ",", " ", "vars", ",", 
+         "10"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Timing", "[", 
+  RowBox[{"findWords", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sym", "[", 
+      RowBox[{"x1", ",", "\"\<a\>\""}], "]"}], " ", "&&", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"sym", "[", 
+        RowBox[{"x2", ",", "\"\<x\>\""}], "]"}], " ", "||", " ", 
+       RowBox[{"sym", "[", 
+        RowBox[{"x3", ",", "\"\<x\>\""}], "]"}], " ", "||", " ", 
+       RowBox[{"sym", "[", 
+        RowBox[{"x4", ",", "\"\<x\>\""}], "]"}], " ", "||", " ", 
+       RowBox[{"sym", "[", 
+        RowBox[{"x5", ",", "\"\<x\>\""}], "]"}]}], ")"}]}], ",", "vars"}], 
+   "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.73442325380435*^9, 3.734423474978425*^9}, {
+   3.7344235056961317`*^9, 3.7344235346780024`*^9}, {3.7344235850304747`*^9, 
+   3.7344236120938263`*^9}, {3.734423646004497*^9, 3.734424355106185*^9}, {
+   3.734424409113288*^9, 3.734424409742153*^9}, {3.734424444137382*^9, 
+   3.7344245223347883`*^9}, {3.734424557744013*^9, 3.734424700276702*^9}, {
+   3.7344247494368563`*^9, 3.734424957240155*^9}, {3.734424988992414*^9, 
+   3.7344250245186443`*^9}, {3.734425077431548*^9, 3.734425127885198*^9}, 
+   3.7344257411656933`*^9, {3.7344258692397423`*^9, 3.734425912401679*^9}, {
+   3.734426017111261*^9, 3.734426039897998*^9}, {3.734426119703095*^9, 
+   3.734426286218361*^9}, 3.73442641749771*^9, {3.734427063606866*^9, 
+   3.734427063708736*^9}, {3.734507083895652*^9, 3.734507109440936*^9}, {
+   3.734544994669935*^9, 3.734545003342643*^9}, {3.734545242660838*^9, 
+   3.734545251474454*^9}, 3.7345462908456984`*^9, 3.7345463227068453`*^9, {
+   3.73454645995263*^9, 3.734546486264307*^9}, {3.734546657536878*^9, 
+   3.734546659536254*^9}, {3.734546696279524*^9, 3.734546700638256*^9}, {
+   3.7345467352291*^9, 3.734546736834424*^9}, {3.734546886249764*^9, 
+   3.734546907530376*^9}, 3.7345469541140757`*^9},
+ TextJustification->1.,
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "74.93228100000000324598659062758088111877`7.895268866358646", ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"admix\"\>", ",", "\<\"affix\"\>", ",", "\<\"annex\"\>", 
+     ",", "\<\"auxin\"\>", ",", "\<\"axial\"\>", ",", "\<\"axing\"\>", 
+     ",", "\<\"axiom\"\>", ",", "\<\"axles\"\>", ",", "\<\"axons\"\>"}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.734424057804922*^9, 3.73442421995084*^9}, {
+   3.7344243048523006`*^9, 3.734424355651964*^9}, 3.7344244103798447`*^9, {
+   3.7344246234488077`*^9, 3.734424633549943*^9}, {3.7344246719666433`*^9, 
+   3.7344247023158283`*^9}, {3.734424758047907*^9, 3.734424895859437*^9}, {
+   3.734424931039658*^9, 3.734424965461691*^9}, {3.73442500045907*^9, 
+   3.734425030859819*^9}, {3.734425094153067*^9, 3.734425130594686*^9}, 
+   3.734425918488977*^9, 3.73442601087072*^9, 3.734426107161891*^9, 
+   3.7344262785768023`*^9, 3.734426355849999*^9, 3.7344287845614223`*^9, 
+   3.734505528773582*^9, 3.734507110312368*^9, {3.7345071861451902`*^9, 
+   3.734507197497109*^9}, 3.7345073384149437`*^9, 3.734514833626101*^9, 
+   3.734545014427503*^9, 3.734545118928379*^9, 3.734545247120085*^9, 
+   3.734545318049779*^9, 3.734546212544292*^9, 3.734546292630519*^9, 
+   3.734546323206863*^9, 3.734546370840506*^9, 3.734546460655629*^9, 
+   3.7345466633460817`*^9, 3.7345467376981688`*^9, 3.734546881780964*^9, 
+   3.734546920827745*^9, 3.734547028577497*^9, 3.734548818991354*^9, 
+   3.734548914760748*^9, 3.734549587614006*^9, 3.734556561825584*^9, 
+   3.734557073956444*^9, 3.734557126705222*^9, 3.7345572226979733`*^9, 
+   3.734560784360305*^9},
+ TextJustification->1.,
+ FontSize->14]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{813, 919},
+WindowMargins->{{23, Automatic}, {Automatic, 17}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
+2014)",
+StyleDefinitions->FrontEnd`FileName[{"Utility"}, "Memo.nb", CharacterEncoding -> 
+  "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 97, 1, 28, "Input"],
+Cell[680, 25, 414, 8, 41, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1131, 38, 149, 3, 83, "Title"],
+Cell[1283, 43, 1770, 44, 264, "Text"],
+Cell[CellGroupData[{
+Cell[3078, 91, 326, 9, 48, "Input"],
+Cell[3407, 102, 304, 6, 29, "Output"]
+}, Open  ]],
+Cell[3726, 111, 1339, 29, 193, "Text"],
+Cell[CellGroupData[{
+Cell[5090, 144, 1446, 40, 138, "Input"],
+Cell[6539, 186, 407, 7, 29, "Output"],
+Cell[CellGroupData[{
+Cell[6971, 197, 399, 7, 22, "Print"],
+Cell[7373, 206, 402, 7, 22, "Print"],
+Cell[7778, 215, 445, 7, 22, "Print"],
+Cell[8226, 224, 400, 7, 22, "Print"],
+Cell[8629, 233, 400, 7, 22, "Print"],
+Cell[9032, 242, 415, 7, 22, "Print"],
+Cell[9450, 251, 400, 7, 22, "Print"],
+Cell[9853, 260, 399, 7, 22, "Print"],
+Cell[10255, 269, 397, 7, 22, "Print"],
+Cell[10655, 278, 400, 7, 22, "Print"],
+Cell[11058, 287, 338, 6, 22, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[11423, 297, 1244, 26, 193, "Text"],
+Cell[CellGroupData[{
+Cell[12692, 327, 2863, 67, 338, "Input"],
+Cell[15558, 396, 652, 12, 29, "Output"]
+}, Open  ]],
+Cell[16225, 411, 1344, 31, 216, "Text"],
+Cell[17572, 444, 3840, 90, 355, "Input"],
+Cell[21415, 536, 1390, 27, 216, "Text"],
+Cell[CellGroupData[{
+Cell[22830, 567, 1091, 31, 84, "Input"],
+Cell[23924, 600, 837, 14, 29, "Output"],
+Cell[24764, 616, 8116, 216, 318, "Output"]
+}, Open  ]],
+Cell[32895, 835, 1392, 26, 193, "Text"],
+Cell[CellGroupData[{
+Cell[34312, 865, 360, 9, 29, "Input"],
+Cell[34675, 876, 1589, 40, 233, "Output"]
+}, Open  ]],
+Cell[36279, 919, 1088, 19, 124, "Text"],
+Cell[CellGroupData[{
+Cell[37392, 942, 798, 21, 48, "Input"],
+Cell[38193, 965, 520, 11, 29, "Output"],
+Cell[38716, 978, 375, 7, 29, "Output"]
+}, Open  ]],
+Cell[39106, 988, 1717, 32, 216, "Text"],
+Cell[CellGroupData[{
+Cell[40848, 1024, 3752, 88, 230, "Input"],
+Cell[44603, 1114, 1489, 24, 138, "Output"]
+}, Open  ]],
+Cell[46107, 1141, 289, 7, 55, "Text"],
+Cell[CellGroupData[{
+Cell[46421, 1152, 475, 11, 29, "Input"],
+Cell[46899, 1165, 844, 16, 138, "Output"]
+}, Open  ]],
+Cell[47758, 1184, 1281, 27, 124, "Text"],
+Cell[CellGroupData[{
+Cell[49064, 1215, 4360, 97, 391, "Input"],
+Cell[53427, 1314, 280, 5, 29, "Output"],
+Cell[53710, 1321, 1472, 42, 48, "Output"]
+}, Open  ]],
+Cell[55197, 1366, 736, 12, 124, "Text"],
+Cell[CellGroupData[{
+Cell[55958, 1382, 3846, 88, 321, "Input"],
+Cell[59807, 1472, 2492, 35, 471, "Output"]
+}, Open  ]],
+Cell[62314, 1510, 844, 15, 78, "Text"],
+Cell[CellGroupData[{
+Cell[63183, 1529, 1118, 29, 84, "Input"],
+Cell[64304, 1560, 2793, 41, 471, "Output"]
+}, Open  ]],
+Cell[67112, 1604, 1461, 37, 170, "Text"],
+Cell[CellGroupData[{
+Cell[68598, 1645, 990, 26, 84, "Input"],
+Cell[69591, 1673, 354, 6, 29, "Output"],
+Cell[69948, 1681, 690, 13, 48, "Output"],
+Cell[70641, 1696, 1741, 28, 138, "Output"]
+}, Open  ]],
+Cell[72397, 1727, 1005, 17, 193, "Text"],
+Cell[CellGroupData[{
+Cell[73427, 1748, 1194, 31, 103, "Input"],
+Cell[74624, 1781, 1543, 33, 66, "Output"],
+Cell[76170, 1816, 256, 5, 29, "Output"],
+Cell[76429, 1823, 292, 5, 29, "Output"]
+}, Open  ]],
+Cell[76736, 1831, 705, 12, 78, "Text"],
+Cell[CellGroupData[{
+Cell[77466, 1847, 2408, 57, 283, "Input"],
+Cell[79877, 1906, 625, 12, 29, "Output"]
+}, Open  ]],
+Cell[80517, 1921, 837, 16, 124, "Text"],
+Cell[CellGroupData[{
+Cell[81379, 1941, 1027, 28, 66, "Input"],
+Cell[82409, 1971, 357, 6, 29, "Output"],
+Cell[82769, 1979, 802, 22, 29, "Output"],
+Cell[83574, 2003, 1203, 24, 84, "Output"]
+}, Open  ]],
+Cell[84792, 2030, 1001, 17, 170, "Text"],
+Cell[CellGroupData[{
+Cell[85818, 2051, 542, 13, 29, "Input"],
+Cell[86363, 2066, 488, 10, 29, "Output"]
+}, Open  ]],
+Cell[86866, 2079, 253, 6, 32, "Text"],
+Cell[CellGroupData[{
+Cell[87144, 2089, 1273, 32, 86, "Input"],
+Cell[88420, 2123, 660, 11, 29, "Output"]
+}, Open  ]],
+Cell[89095, 2137, 359, 12, 32, "Text"],
+Cell[CellGroupData[{
+Cell[89479, 2153, 873, 24, 66, "Input"],
+Cell[90355, 2179, 304, 6, 29, "Output"],
+Cell[90662, 2187, 304, 6, 29, "Output"]
+}, Open  ]],
+Cell[90981, 2196, 1121, 22, 170, "Text"],
+Cell[CellGroupData[{
+Cell[92127, 2222, 407, 11, 29, "Input"],
+Cell[92537, 2235, 278, 5, 29, "Output"]
+}, Open  ]],
+Cell[92830, 2243, 420, 8, 55, "Text"],
+Cell[CellGroupData[{
+Cell[93275, 2255, 904, 24, 66, "Input"],
+Cell[94182, 2281, 1760, 30, 138, "Output"],
+Cell[95945, 2313, 566, 11, 29, "Output"],
+Cell[96514, 2326, 396, 8, 29, "Output"]
+}, Open  ]],
+Cell[96925, 2337, 600, 12, 78, "Text"],
+Cell[CellGroupData[{
+Cell[97550, 2353, 426, 12, 48, "Input"],
+Cell[97979, 2367, 306, 6, 29, "Output"]
+}, Open  ]],
+Cell[98300, 2376, 404, 9, 55, "Text"],
+Cell[CellGroupData[{
+Cell[98729, 2389, 430, 12, 48, "Input"],
+Cell[99162, 2403, 281, 5, 29, "Output"]
+}, Open  ]],
+Cell[99458, 2411, 532, 10, 78, "Text"],
+Cell[CellGroupData[{
+Cell[100015, 2425, 389, 11, 48, "Input"],
+Cell[100407, 2438, 391, 8, 29, "Output"]
+}, Open  ]],
+Cell[100813, 2449, 783, 20, 124, "Text"],
+Cell[CellGroupData[{
+Cell[101621, 2473, 699, 18, 66, "Input"],
+Cell[102323, 2493, 349, 6, 29, "Output"],
+Cell[102675, 2501, 1533, 24, 102, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[104245, 2530, 1047, 30, 85, "Input"],
+Cell[105295, 2562, 1059, 21, 66, "Output"]
+}, Open  ]],
+Cell[106369, 2586, 709, 14, 124, "Text"],
+Cell[107081, 2602, 1189, 32, 121, "Input"],
+Cell[108273, 2636, 454, 9, 55, "Text"],
+Cell[CellGroupData[{
+Cell[108752, 2649, 929, 16, 48, "Input"],
+Cell[109684, 2667, 6354, 147, 440, "Output"]
+}, Open  ]],
+Cell[116053, 2817, 1099, 19, 147, "Text"],
+Cell[CellGroupData[{
+Cell[117177, 2840, 1574, 43, 120, "Input"],
+Cell[118754, 2885, 1263, 38, 48, "Output"],
+Cell[120020, 2925, 1124, 20, 66, "Output"],
+Cell[121147, 2947, 8808, 213, 390, "Output"]
+}, Open  ]],
+Cell[129970, 3163, 583, 11, 55, "Text"],
+Cell[CellGroupData[{
+Cell[130578, 3178, 468, 11, 48, "Input"],
+Cell[131049, 3191, 557, 11, 29, "Output"],
+Cell[131609, 3204, 315, 7, 29, "Output"]
+}, Open  ]],
+Cell[131939, 3214, 297, 9, 55, "Text"],
+Cell[CellGroupData[{
+Cell[132261, 3227, 174, 4, 29, "Input"],
+Cell[132438, 3233, 577, 12, 29, "Output"]
+}, Open  ]],
+Cell[133030, 3248, 1268, 23, 193, "Text"],
+Cell[CellGroupData[{
+Cell[134323, 3275, 2250, 57, 158, "Input"],
+Cell[136576, 3334, 418, 8, 29, "Output"]
+}, Open  ]],
+Cell[137009, 3345, 307, 7, 55, "Text"],
+Cell[CellGroupData[{
+Cell[137341, 3356, 1887, 49, 175, "Input"],
+Cell[139231, 3407, 279, 5, 29, "Output"],
+Cell[139513, 3414, 283, 5, 29, "Output"]
+}, Open  ]],
+Cell[139811, 3422, 594, 11, 78, "Text"],
+Cell[CellGroupData[{
+Cell[140430, 3437, 963, 23, 67, "Input"],
+Cell[141396, 3462, 613, 13, 29, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[142046, 3480, 1285, 28, 120, "Input"],
+Cell[143334, 3510, 6274, 146, 414, "Output"]
+}, Open  ]],
+Cell[149623, 3659, 2130, 49, 262, "Text"],
+Cell[151756, 3710, 4002, 88, 337, "Input"],
+Cell[155761, 3800, 353, 8, 55, "Text"],
+Cell[CellGroupData[{
+Cell[156139, 3812, 1537, 33, 66, "Input"],
+Cell[157679, 3847, 581, 11, 29, "Output"],
+Cell[158263, 3860, 2625, 54, 192, "Output"]
+}, Open  ]],
+Cell[160903, 3917, 1480, 24, 216, "Text"],
+Cell[162386, 3943, 7756, 168, 323, "Input"],
+Cell[170145, 4113, 1517, 23, 193, "Text"],
+Cell[CellGroupData[{
+Cell[171687, 4140, 3737, 90, 213, "Input"],
+Cell[175427, 4232, 1666, 28, 29, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
