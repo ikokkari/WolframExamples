@@ -1,4 +1,4 @@
-# My Wolfram Mathematica Page
+# Links to PDF versions of my Wolfram Mathematica documents
 
 [Ilkka Kokkarinen](http://www.scs.ryerson.ca/~ikokkari/), _ilkka.kokkarinen@gmail.com_ 
 
